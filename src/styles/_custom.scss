@@ -1,0 +1,105 @@
+
+a{
+  color: $yux-blue !important;  
+  text-decoration: none;
+}
+
+.App{
+    min-height: 100vh;
+}
+
+// .TD{
+//     min-height: 650px;
+// }
+/* ==================================
+**  MENU - NAVIGATION
+ ====================================*/
+.Header{
+    background: black;
+    header{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        // height: 50px;
+        .logo{
+            position: relative;
+            img{
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                bottom: -65px;
+            }
+        } //Fin logo
+        .navigation{
+            position: relative;
+            cursor: pointer;
+            .ouvre-menu{
+                font-size: 25px;
+                color: gainsboro;
+                width: 110px;
+                text-align: center;
+            }
+            .ouvre-menu-icon {
+                text-align: center;
+                color: gainsboro;
+                position: absolute;
+                bottom: -13px;
+                width: 100%;
+            }
+            ul{
+                margin: 0;
+                padding-left: 0;
+                position: absolute;
+                bottom: -114px;
+                &.menu-ouvert{
+                    transform: rotateY(0deg);
+                    transition: all 0.5s;
+                }
+                &.menu-ferme{
+                    transform: rotateY(-90deg);
+                    transition: all 0.5s;
+                }
+                li{
+                    list-style: none;
+                    margin-bottom: 1px;
+                    transform: skew(-5deg);
+                    a{
+                        display: block;
+                        padding: 5px 20px 5px 5px;
+                        background: rgba(0,0,0,.5);
+                        color: white !important;
+                        // Onglet active
+                        &.selected{
+                            font-weight: bold;
+                            background: $color5;
+                            border-left: 5px solid darken($color5, 10%);
+                        } // Fin Onglet active
+                        &:hover{
+                            background: $color5;
+                            font-weight: bold;
+                            margin-left: 2px;
+                        } 
+                    }
+                }
+            }
+        } // navigation
+    
+        .connexion {
+            padding-top: 5px;
+        }
+    } // header
+} // Header
+
+/* ==================================
+** FOOTER
+ ====================================*/
+footer{
+   text-align: center;
+   color: gainsboro;
+   background: black;
+   padding: 5px;
+   height: 34px;
+    p{
+        margin-bottom: 0;
+    }
+}
