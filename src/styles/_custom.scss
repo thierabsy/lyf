@@ -1,11 +1,33 @@
 
+
+body{
+    background-image: url(/img/slss.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    &:before {
+        content: "";
+        background: rgba(255,255,255,0.8);
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: -1;
+    }
+}
 a{
   color: $yux-blue !important;  
   text-decoration: none;
+  &:hover{
+      text-decoration: none;
+  }
 }
 
 .App{
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 // .TD{
@@ -16,11 +38,15 @@ a{
  ====================================*/
 .Header{
     background: black;
+    z-index: 10;
     header{
         display: flex;
         justify-content: space-between;
         padding: 10px;
         // height: 50px;
+        .header-item {
+            width: 33%;
+        }
         .logo{
             position: relative;
             img{
@@ -28,6 +54,12 @@ a{
                 height: 100px;
                 position: absolute;
                 bottom: -65px;
+                cursor: pointer;
+                transition: all 0.5s;
+                &:hover{
+                    bottom: -50px;
+                    transition: all 0.5s;
+                }
             }
         } //Fin logo
         .navigation{
@@ -36,7 +68,7 @@ a{
             .ouvre-menu{
                 font-size: 25px;
                 color: gainsboro;
-                width: 110px;
+                width: 100%;
                 text-align: center;
             }
             .ouvre-menu-icon {
@@ -50,10 +82,12 @@ a{
                 margin: 0;
                 padding-left: 0;
                 position: absolute;
-                bottom: -114px;
+                bottom: -184px;
+                left: 20%;
                 &.menu-ouvert{
-                    transform: rotateY(0deg);
+                    transform: rotateY(0deg) translateX(-50%);
                     transition: all 0.5s;
+                    left: 50%;
                 }
                 &.menu-ferme{
                     transform: rotateY(-90deg);
@@ -66,7 +100,7 @@ a{
                     a{
                         display: block;
                         padding: 5px 20px 5px 5px;
-                        background: rgba(0,0,0,.5);
+                        background: rgba(0,0,0,.7);
                         color: white !important;
                         // Onglet active
                         &.selected{
@@ -86,6 +120,7 @@ a{
     
         .connexion {
             padding-top: 5px;
+            text-align: right;
         }
     } // header
 } // Header
@@ -102,4 +137,33 @@ footer{
     p{
         margin-bottom: 0;
     }
+}
+
+.Links{
+    span {
+        padding: 10px 20px;
+        margin: 5px;
+        background: $color5;
+        color: white !important;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
+/* ==================================
+** ATTRIBUTS PARTAGES
+ ====================================*/
+
+ // Overlay disponible dans EntrerEquipe - EntrerScore
+.entrer-overlay{
+    background: rgba(0,0,0,0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    border: 0;
+    right: 0;
+    height: 100vh;
+    z-index: 1000;
+    overflow-y: auto;
 }

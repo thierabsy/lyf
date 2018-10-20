@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Scores extends Component {
   render() {
@@ -10,4 +11,8 @@ class Scores extends Component {
   }
 }
 
-export default Scores;
+const mapStateToProps = ({score}) => {
+  return {score}
+}
+
+export default connect(mapStateToProps, null)(Scores);

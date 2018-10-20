@@ -1,0 +1,50 @@
+
+.EntrerEquipe{
+}
+.EntrerScoreForm,
+.EntrerEquipeForm {
+    max-width: 400px; 
+    background: #3d8a3d;
+    margin: 20px auto;
+    padding: 30px 20px 20px;
+    border-radius: 10px;
+    position: relative;
+    .annuler{
+        position: absolute;
+        background: $color1; 
+        color: white;
+        padding: 2px 15px;
+        right: -13px;
+        top: 0;
+        transform: rotate(15deg);
+        cursor: pointer;
+    }
+    .form-header{
+        text-align: center;
+        text-transform: uppercase;
+        color: white;
+    }
+    .form-control{
+        // background-color: linear-gradient(20deg, #faffbd, #3d8a3d);
+        color:  #3f403f !important;
+        border-color: #3f403f;
+    }
+        label{
+            font-weight: bold;
+            color: white !important;
+            // text-shadow: 1px 1px rgba(0, 0, 0, 0.72);
+            margin-bottom: 0;
+        }
+        input{
+            &:focus{
+                outline: none;
+            }
+        }
+    .btnSubmit{
+        background: $color1;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 600;
+        box-shadow: 0 0 10px black;
+    }
+} 

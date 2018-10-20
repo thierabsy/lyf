@@ -23,10 +23,10 @@ class Header extends Component {
             <div className="Header"> 
                 <div className="container"> 
                     <header>
-                        <div className="logo">
+                        <div className="header-item logo">
                             <img src="img/yux.png" alt="LYF" />
                         </div>
-                        <div className="navigation" onClick={this.ouvreMenu} >  {/* En cliquant la sur Menu ou icon, on ouvre le menu */}
+                        <div className="header-item navigation" onClick={this.ouvreMenu} >  {/* En cliquant la sur Menu ou icon, on ouvre le menu */}
                             <div className="ouvre-menu">Menu</div>
                             <div className="ouvre-menu-icon">
                                 {/* Met l'icon vers le haut (up) si le menu est ouvert sinon vers le bas (down)  */}
@@ -43,9 +43,15 @@ class Header extends Component {
                                 <li>
                                     <NavLink to="/scores" activeClassName="selected">Scores</NavLink>
                                 </li>
+                                <li>
+                                    <NavLink to="/calendrier" activeClassName="selected">Calendrier</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/equipes" activeClassName="selected">Equipes</NavLink>
+                                </li>
                             </ul>
                         </div>
-                        <div className="connexion">
+                        <div className="header-item connexion">
                             <a href="/logout"> 
                                 <i className="fas fa-power-off" /> { window.innerWidth > 768 && "Se Déconnecter"} {/*Le texte "Se Déconnecter" ne sera pas visible en-dessous de 768px */}
                             </a>
