@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
-import { avoirClassement } from '../store/actions'
+import { avoirClassement, getAction } from '../store/actions'
 import Tableau from './classement/Tableau';
 import Links from './shared/Links';
 
@@ -14,9 +15,10 @@ class Classement extends Component {
   }
   componentDidMount(){
     this.props.avoirClassement();
+    this.props.getAction("classement");
   }
   render() {
-    const date = new Date();
+    console("Classement", this.props.classement);
     return (
       <div className="TD Classement">
         <div className="overlay"></div>
@@ -33,7 +35,7 @@ class Classement extends Component {
             <div className="row">
                 <div className="col col-lg-6 col-md-12 col-sm-12 order-sm-2 order-md-2 order-lg-1">
                   <div className="tableau-wrapper">
-                    <div className="date"> Classement du championnat au { `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}` } </div>
+                    <div className="date"> Classement du championnat au { moment().format("L") } </div>
                     <Tableau classement= {this.props.classement} />
                   </div>
                 </div>
@@ -54,4 +56,4 @@ const mapStateToProps = ({classement, entrer}) => {
   return {classement, entrer}
 }
 
-export default connect(mapStateToProps, {avoirClassement})(Classement);
+export default connect(mapStateToProps, {avoirClassement, getAction})(Classement);

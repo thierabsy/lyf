@@ -10,16 +10,17 @@ export class EntrerEquipe extends Component {
         this.state = {
             equipe: {}
         }
-        this.inputChange = this.inputChange.bind(this);
+        this.inputChange = this.inputChange.bind(this); 
         this.annuler = this.annuler.bind(this);
     }
 
-    // Change la valeur state si le champ change dans le formulaire
+    // Change la valeur du champ dans state si le champ change dans le formulaire
     inputChange(e){ 
         this.setState({
             equipe : {
                 ...this.state.equipe,
-                [e.target.name] : e.target.value
+                // Si le champ type="number" il convertit la value en integer sinon return la valeur
+                [e.target.name] : e.target.type === "number" ? Number(e.target.value) : e.target.value 
             }
         })
     }

@@ -51,12 +51,14 @@ const EntrerScoreForm = ({sc, options, event, annuler, postAction}) => {
                         <SelectField 
                             htmlFor="equipe_1"
                             label="Selection Equipe 1"
-                            name="equipe_1"
+                            name="equipe_1_id"
                             id="equipe_1"
                             placeholder="equipe 1"
                             required={true}
                             options={options}
-                            value={sc.equipe_1 ? sc.equipe_1 : ""} //S'il y a cet attribut sur le state, il devient la valeur de ce champs sinon "" 
+                            optionValue="equipe_id" 
+                            optionName="nom_equipe"
+                            value={sc.equipe_1_id ? sc.equipe_1_id : ""} //S'il y a cet attribut sur le state, il devient la valeur de ce champs sinon "" 
                             event={event} // A chaque changement dans ce champ, il y a le changement de sa valeur dans le state
                         />
                         <NumberField 
@@ -74,12 +76,14 @@ const EntrerScoreForm = ({sc, options, event, annuler, postAction}) => {
                         <SelectField 
                             htmlFor="equipe_2"
                             label="Selection Equipe 2"
-                            name="equipe_2"
+                            name="equipe_2_id"
                             id="equipe_2"
                             placeholder="equipe 2"
                             required={true}
                             options={options}
-                            value={sc.equipe_2 ? sc.equipe_2 : ""} //S'il y a cet attribut sur le state, il devient la valeur de ce champs sinon "" 
+                            optionValue="equipe_id" 
+                            optionName="nom_equipe"
+                            value={sc.equipe_2_id ? sc.equipe_2_id : ""} //S'il y a cet attribut sur le state, il devient la valeur de ce champs sinon "" 
                             event={event} // A chaque changement dans ce champ, il y a le changement de sa valeur dans le state
                         />
                         <NumberField 

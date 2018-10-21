@@ -33,14 +33,9 @@ export const getAction = (route) => async (dispatch) => {
     // Combinaison entre l'url racine et la destination
     const url = rootPath + route;
 
-    const data = await axios.get(url)
-                            .then( json => {
-                                dispatch({ type: GET_ACTION, payload: json})
-                            })
-                            .catch(function (error) {
-                            // handle error
-                            console.log("get-err",error);
-                        });
+    const json = await axios.get(url)
+
+    dispatch({ type: GET_ACTION, payload: json.data })
 }
 
 // action pour poster un formulaire avec la destitation et l'objet

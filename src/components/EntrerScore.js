@@ -3,20 +3,21 @@ import { connect } from 'react-redux'
 import EntrerScoreForm from './scores/EntrerScoreForm';
 
 import { entrer, postAction } from '../store/actions';
+import { classement } from '../store/data/classement';
 
 export class EntrerScore extends Component {
     constructor(props){
         super(props)
         this.state = {
             score: {
-                equipe_1 : null,
+                equipe_1_id : "",
                 equipe_1_score : null,
-                equipe_2 : null,
+                equipe_2_id : "",
                 equipe_2_score : null,
+                equipe_1_point: null,
+                equipe_2_point: null,
                 date_match: "",
                 journee: null,
-                equipe_1_point: null,
-                equipe_2_point: null
             }
         }
         this.inputChange = this.inputChange.bind(this);
@@ -31,10 +32,13 @@ export class EntrerScore extends Component {
                 [e.target.name] : e.target.value,
             }},function() {
                 this.setState({
-                    equipe_1_point: parseInt(this.state.score.equipe_1_score) > parseInt(this.state.score.equipe_2_score)? 3 : 
-                                    parseInt(this.state.score.equipe_1_score) === parseInt(this.state.score.equipe_2_score)? 1 : 0,
-                    equipe_2_point: parseInt(this.state.score.equipe_1_score) < parseInt(this.state.score.equipe_2_score)? 3 : 
-                                    parseInt(this.state.score.equipe_1_score) === parseInt(this.state.score.equipe_2_score)? 1 : 0,
+                    score : {
+                        ...this.state.score,
+                        equipe_1_point: parseInt(this.state.score.equipe_1_score) > parseInt(this.state.score.equipe_2_score)? 3 : 
+                                        parseInt(this.state.score.equipe_1_score) === parseInt(this.state.score.equipe_2_score)? 1 : 0,
+                        equipe_2_point: parseInt(this.state.score.equipe_1_score) < parseInt(this.state.score.equipe_2_score)? 3 : 
+                                        parseInt(this.state.score.equipe_1_score) === parseInt(this.state.score.equipe_2_score)? 1 : 0,
+                    }
                 })
         })
     }
@@ -47,20 +51,9 @@ export class EntrerScore extends Component {
         this.props.entrer("")
     }
     render() {
-        const options = [
-            {
-                id: 1,
-                name: "Equipe 1"
-            },
-            {
-                id: 2,
-                name: "Equipe 2"
-            },
-            {
-                id: 3,
-                name: "Equipe 3"
-            }
-        ]
+        const options = classement.map(({equipe_id, nom_equipe}) => ({equipe_id, nom_equipe}));
+        console.log(options);
+
         console.log("score", this.state.score);
         return (
             <div className="entrer-overlay">
