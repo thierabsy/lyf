@@ -13,6 +13,7 @@ const NumberField = ({htmlFor="", label="", name="", id="", placeholder="", valu
                 type="number"
                 name={name} 
                 id={id}
+                min="0"
                 className="form-control" 
                 placeholder={ placeholder }
                 onChange={(e) => event(e)}

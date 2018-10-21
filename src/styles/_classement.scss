@@ -54,6 +54,7 @@
         background-size: 15%;
         background-position: center;
         height: 100%;
+        min-height: 50px;
     }
 }
 
@@ -69,6 +70,10 @@
             background: $color5;
             .equipe{
                 text-align: right;
+                a{
+                    color: inherit !important;
+                    text-decoration: underline;
+                }
             }
             tr:nth-child(2n){
                 background: $color2;

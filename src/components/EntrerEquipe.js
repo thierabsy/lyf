@@ -50,8 +50,8 @@ export class EntrerEquipe extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+// const mapStateToProps = (state) => {
   
-} 
+// } 
 
-export default connect(mapStateToProps, { entrer, postAction })(EntrerEquipe)
+export default connect(null, { entrer, postAction })(EntrerEquipe)

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import TextField from '../forms/TextField'
-import NumberField from '../forms/NumberField'
 import DateField from '../forms/DateField'
 
 const EntrerEquipeForm = ({eq , event, annuler, postAction}) => {
@@ -101,8 +100,7 @@ const EntrerEquipeForm = ({eq , event, annuler, postAction}) => {
                 />
                 <button 
                     className="btn btn-block btnSubmit"
-                    onClick={(e) => console.log("SUBMIT_EQUIPE", eq)} 
-                    // onClick={(e) => postAction(e, "equipe", eq)} 
+                    onClick={(e) => { postAction(e, "equipe", eq)}} 
                 >Enregistrer l'Equipe</button>
             </form>
         </div>    

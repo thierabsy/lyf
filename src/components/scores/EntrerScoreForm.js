@@ -1,11 +1,12 @@
 import React from 'react';
+import moment from 'moment';
 
 import SelectField from '../forms/SelectField'
 import NumberField from '../forms/NumberField'
 import DateField from '../forms/DateField'
 import TextareaField from '../forms/TextareaField'
 
-const EntrerScoreForm = ({sc, options, event, annuler}) => {
+const EntrerScoreForm = ({sc, options, event, annuler, postAction}) => {
     return(
         <div className="EntrerScoreForm">
             {/* En clicquant sur "Annuler", on annule l'enregistrement d'une nouvelle équipe */}
@@ -37,8 +38,8 @@ const EntrerScoreForm = ({sc, options, event, annuler}) => {
                             name="date_match"
                             id="date_match"
                             placeholder="date_match"
-                            // min={ moment().format("L") } // La date maximale qu'on peut prendre est la date d'aujourd'hui
-                            // max={ moment().format("L") } // La date maximale qu'on peut prendre est la date d'aujourd'hui
+                            min={ moment().subtract(365, "days").format("L") } // La date maximale qu'on peut prendre est la date d-
+                            max={ moment().format("L") } // La date maximale qu'on peut prendre est la date d'aujourd'hui
                             required={true}
                             value={sc.date_match ? sc.date_match : ""} //S'il y a cet attribut sur le state, il devient la valeur de ce champs sinon "" 
                             event={event} // A chaque changement dans ce champ, il y a le changement de sa valeur dans le state
@@ -91,7 +92,6 @@ const EntrerScoreForm = ({sc, options, event, annuler}) => {
                             value={sc.equipe_2_score ? sc.equipe_2_score : ""} //S'il y a cet attribut sur le state, il devient la valeur de ce champs sinon "" 
                             event={event} // A chaque changement dans ce champ, il y a le changement de sa valeur dans le state
                         />
-                        
                     </div>
                 </div>
                 <TextareaField 
@@ -104,7 +104,10 @@ const EntrerScoreForm = ({sc, options, event, annuler}) => {
                     value={sc.commentaires ? sc.commentaires : ""} //S'il y a cet attribut sur le state, il devient la valeur de ce champs sinon "" 
                     event={event} // A chaque changement dans ce champ, il y a le changement de sa valeur dans le state
                 />
-                <button className="btn btn-block btnSubmit">Enregistrer ce score</button>
+                <button 
+                    className="btn btn-block btnSubmit"
+                    onClick={(e) => { postAction(e, "score", sc)}} 
+                >Enregistrer ce score</button>
             </div>
         </div>    
     )

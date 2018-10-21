@@ -14,7 +14,7 @@ class Accueil extends Component {
           <div className="accueil-intro sponsor">
             <h5>Sponsor Officiel</h5>
             <a href="http://yuxdakar.com" target="_blank">
-              <img src="img/yux-logo.jpg" alt="LYF" />
+              <img src="img/yux-logo.jpg" className="yux-logo" alt="LYF" />
             </a>
           </div>
         </div>

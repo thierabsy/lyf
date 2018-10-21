@@ -8,7 +8,16 @@ export class EntrerScore extends Component {
     constructor(props){
         super(props)
         this.state = {
-            score: {}
+            score: {
+                equipe_1 : null,
+                equipe_1_score : null,
+                equipe_2 : null,
+                equipe_2_score : null,
+                date_match: "",
+                journee: null,
+                equipe_1_point: null,
+                equipe_2_point: null
+            }
         }
         this.inputChange = this.inputChange.bind(this);
         this.annuler = this.annuler.bind(this);
@@ -19,8 +28,14 @@ export class EntrerScore extends Component {
         this.setState({
             score : {
                 ...this.state.score,
-                [e.target.name] : e.target.value
-            }
+                [e.target.name] : e.target.value,
+            }},function() {
+                this.setState({
+                    equipe_1_point: parseInt(this.state.score.equipe_1_score) > parseInt(this.state.score.equipe_2_score)? 3 : 
+                                    parseInt(this.state.score.equipe_1_score) === parseInt(this.state.score.equipe_2_score)? 1 : 0,
+                    equipe_2_point: parseInt(this.state.score.equipe_1_score) < parseInt(this.state.score.equipe_2_score)? 3 : 
+                                    parseInt(this.state.score.equipe_1_score) === parseInt(this.state.score.equipe_2_score)? 1 : 0,
+                })
         })
     }
     annuler(){
@@ -32,7 +47,6 @@ export class EntrerScore extends Component {
         this.props.entrer("")
     }
     render() {
-        console.log("EQUIPE::: ", this.state.score);
         const options = [
             {
                 id: 1,
@@ -47,6 +61,7 @@ export class EntrerScore extends Component {
                 name: "Equipe 3"
             }
         ]
+        console.log("score", this.state.score);
         return (
             <div className="entrer-overlay">
                 <div className="EntrerScore">

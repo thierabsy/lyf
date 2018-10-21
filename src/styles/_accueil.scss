@@ -39,8 +39,16 @@
             text-decoration: underline;
         }
         img{
-            width: 150px;;
-            height: 150px;
+            width: 110px;;
+            height: 110px;
+            &.yux-logo{
+                border-radius: 25%;
+                border: 2px solid;
+                transition: all 0.5s;
+                &:hover{
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.65);
+                }
+            }
         }
     }
 }

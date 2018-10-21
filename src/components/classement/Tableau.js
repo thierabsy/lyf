@@ -5,7 +5,8 @@ import _ from 'lodash';
 const renderTableau = (classement) => {
     if(classement){
        return(
-        <table className="table table-responsive table-bordered" > 
+        //    La table devient responsive si la taille de l'ecran est < 572px en ajoutant la classe "table-responsive"
+        <table className={`table ${window.innerHeight < 572 ? "table-responsive" : ""} table-bordered`} > 
             <thead>
                 <tr>
                     <th>#</th>
@@ -23,12 +24,12 @@ const renderTableau = (classement) => {
                         return(
                             <tr key={index}>
                                 <td> { index + 1} </td> 
-                                <td className="equipe" colSpan="2" > { col.equipe } </td> 
-                                <td> { col.points } </td> 
-                                <td> { col.match_joues } </td> 
-                                <td> { col.match_victoires } </td> 
-                                <td> { col.match_nuls } </td> 
-                                <td> { col.match_defaites } </td> 
+                                <td className="equipe" colSpan="2" > <Link to={`/equipes/${col.id}`}>{ col.nom_equipe }</Link> </td> 
+                                <td> { col.position.points } </td> 
+                                <td> { col.position.journees } </td> 
+                                <td> { col.position.victoire } </td> 
+                                <td> { col.position.nul } </td> 
+                                <td> { col.position.defaite } </td> 
                             </tr>  
                         )
                     })
@@ -44,7 +45,7 @@ const Tableau = ({ classement }) => {
     // On filtre les donnees avec la colonne points
     let donnees = _.sortBy(classement, object => object.points);
     // On filtre les donnees avec la colonne points puis victoires puis nuls de façon descendante
-    let donneesOrdonnees = _.orderBy(donnees, ["points", "match_victoires", "match_nuls"], ["desc", "desc", "desc"]);
+    let donneesOrdonnees = _.orderBy(donnees, ["points", "match_victoire", "match_nul"], ["desc", "desc", "desc"]);
 
     return(
         <div className="Tableau">
