@@ -18,7 +18,7 @@ class Classement extends Component {
     this.props.getAction("classement");
   }
   render() {
-    console("Classement", this.props.classement);
+    
     return (
       <div className="TD Classement">
         <div className="overlay"></div>

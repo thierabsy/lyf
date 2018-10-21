@@ -15,8 +15,7 @@ class App extends Component {
 
   }
   render() {
-    console.log(this.props.score);
-    console.log(this.props.classement);
+    
     return (
       <div className="App">
           <AppRoutes />

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import EntrerEquipeForm from './equipes/EntrerEquipeForm';
 
-import { entrer, postAction } from '../store/actions';
+import { entrer, postAction, getAction } from '../store/actions';
 
 export class EntrerEquipe extends Component {
     constructor(props){
@@ -12,6 +12,7 @@ export class EntrerEquipe extends Component {
         }
         this.inputChange = this.inputChange.bind(this); 
         this.annuler = this.annuler.bind(this);
+        this.postEquipe = this.postEquipe.bind(this);
     }
 
     // Change la valeur du champ dans state si le champ change dans le formulaire
@@ -24,6 +25,7 @@ export class EntrerEquipe extends Component {
             }
         })
     }
+
     annuler(){
         // Vide l'object equipe du state
         this.setState({
@@ -31,6 +33,20 @@ export class EntrerEquipe extends Component {
         })
         // Annule l'activation d'entrer une équipe
         this.props.entrer("")
+    }
+
+    postEquipe(e){
+
+        // On post l'équipe avec l'action 
+        this.props.postAction(e, "equipe", this.state.score);
+
+        // On rafraichit les donnees du tableau
+        this.props.getAction("classement");
+
+        // Vide l'object equipe du state
+        this.setState({
+            equipe : {}
+        });
     }
     render() {
         // console.log("EQUIPE::: ", this.state.equipe);
@@ -42,7 +58,7 @@ export class EntrerEquipe extends Component {
                             eq = { this.state.equipe }
                             event = { this.inputChange }
                             annuler = { this.annuler }
-                            postAction = { this.props.postAction }
+                            postAction = { this.postEquipe }
                         />
                     </div>
                 </div>
@@ -55,4 +71,4 @@ export class EntrerEquipe extends Component {
   
 // } 
 
-export default connect(null, { entrer, postAction })(EntrerEquipe)
+export default connect(null, { entrer, postAction, getAction })(EntrerEquipe)

@@ -24,7 +24,7 @@ const renderTableau = (classement) => {
                         return(
                             <tr key={index}>
                                 <td> { index + 1} </td> 
-                                <td className="equipe" colSpan="2" > <Link to={`/equipes/${col.id}`}>{ col.nom_equipe }</Link> </td> 
+                                <td className="equipe" colSpan="2" > <Link to={`/equipes/${col.equipe_id}`}>{ col.nom_equipe }</Link> </td> 
                                 <td> { col.position.points } </td> 
                                 <td> { col.position.journees } </td> 
                                 <td> { col.position.victoire } </td> 
@@ -41,12 +41,13 @@ const renderTableau = (classement) => {
 }
 
 const Tableau = ({ classement }) => {
-    // console.log("tableau", classement);
+    
     // On filtre les donnees avec la colonne points
-    let donnees = _.sortBy(classement, object => object.points);
+    let donnees = _.sortBy(classement, object => object.position.points);
+    
     // On filtre les donnees avec la colonne points puis victoires puis nuls de façon descendante
-    let donneesOrdonnees = _.orderBy(donnees, ["points", "match_victoire", "match_nul"], ["desc", "desc", "desc"]);
-
+    let donneesOrdonnees = _.orderBy(donnees, ["position.points", "position.victoire", "position.nul"], ["desc", "desc", "desc"]);
+    
     return(
         <div className="Tableau">
             {/* Génère le tableau de classement */}

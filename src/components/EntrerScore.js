@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import EntrerScoreForm from './scores/EntrerScoreForm';
 
-import { entrer, postAction } from '../store/actions';
+import { entrer, postAction, getAction } from '../store/actions';
 import { classement } from '../store/data/classement';
 
 export class EntrerScore extends Component {
@@ -22,6 +22,7 @@ export class EntrerScore extends Component {
         }
         this.inputChange = this.inputChange.bind(this);
         this.annuler = this.annuler.bind(this);
+        this.postScore = this.postScore.bind(this);
     }
 
     // Change la valeur state si le champ change dans le formulaire
@@ -50,8 +51,25 @@ export class EntrerScore extends Component {
         // Annule l'activation d'entrer une équipe
         this.props.entrer("")
     }
+
+    postScore(e){
+
+        // On post le score avec l'action 
+        this.props.postAction(e, "score", this.state.score);
+
+        // On rafraichit les donnees du tableau
+        this.props.getAction("classement");
+
+        // Vide l'object equipe du state
+        this.setState({
+            score : {}
+        });
+    }
+
+    
+
     render() {
-        const options = classement.map(({equipe_id, nom_equipe}) => ({equipe_id, nom_equipe}));
+        const options = this.props.classement.map(({equipe_id, nom_equipe}) => ({equipe_id, nom_equipe}));
         console.log(options);
 
         console.log("score", this.state.score);
@@ -64,7 +82,7 @@ export class EntrerScore extends Component {
                             sc = { this.state.score }
                             event = { this.inputChange }
                             annuler = { this.annuler }
-                            postAction = { this.props.postAction }
+                            postAction = { this.postScore }
                         />
                     </div>
                 </div>
@@ -73,8 +91,8 @@ export class EntrerScore extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-  
+const mapStateToProps = ({ classement }) => {
+  return { classement }
 } 
 
-export default connect(mapStateToProps, { entrer, postAction })(EntrerScore)
+export default connect(mapStateToProps, { entrer, postAction, getAction })(EntrerScore)
