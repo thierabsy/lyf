@@ -1,6 +1,7 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
-const SeConnecter = () => {
+const SeConnecter = ({connect, seConnecter}) => {
     return(
         <div className="SeConnecter">
             <form>
@@ -26,7 +27,12 @@ const SeConnecter = () => {
                         <input type="text" name="motdepasse" id="motdepasse" className="form-control" placeholder="********" />
                     </div>
                 </div>
-                <button className="btn btn-block btnSubmit">Se Connecter</button>
+                <button className="btn btn-block btnSubmit" onClick={e => seConnecter(e)}>
+                {
+                    connect && <Redirect to="/classement" />
+                }
+                Se Connecter
+                </button>
             </form>
         </div>    
     )

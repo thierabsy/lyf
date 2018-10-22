@@ -31,7 +31,7 @@ export const avoirClassement = () => async dispatch => {
 // action pour avoir les donnees dans le serveur
 export const getAction = (route) => async (dispatch) => {
     // Combinaison entre l'url racine et la destination
-    const url = rootPath + route;
+    const url = rootPath + "backend/" + route;
 
     const json = await axios.get(url)
 
