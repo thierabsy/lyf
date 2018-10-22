@@ -1,8 +1,8 @@
-import {  GET_ACTION } from '../types';
+import {  AVOIR_CLASSEMENT } from '../types';
 
 export default function classement (state=[], action){
     switch(action.type){
-        case GET_ACTION:
+        case AVOIR_CLASSEMENT:
             return action.payload
         default:
             return  state

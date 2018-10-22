@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import EntrerScoreForm from './scores/EntrerScoreForm';
 
-import { entrer, postAction, getAction } from '../store/actions';
+import { entrer, postAction, avoirScores, avoirClassement } from '../store/actions';
 
 export class EntrerScore extends Component {
     constructor(props){
@@ -48,7 +48,9 @@ export class EntrerScore extends Component {
             score : {}
         })
         // Annule l'activation d'entrer une équipe
-        this.props.entrer("")
+        this.props.entrer("");
+        // Met à jour le classement
+        this.props.avoirClassement();
     }
 
     postScore(e){
@@ -60,9 +62,8 @@ export class EntrerScore extends Component {
         this.setState({
             score : {}
         });
+        
     }
-
-    
 
     render() {
 
@@ -90,4 +91,4 @@ const mapStateToProps = ({ classement }) => {
   return { classement }
 } 
 
-export default connect(mapStateToProps, { entrer, postAction, getAction })(EntrerScore)
+export default connect(mapStateToProps, { entrer, postAction, avoirScores, avoirClassement })(EntrerScore)

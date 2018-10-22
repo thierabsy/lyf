@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 
-import score from './score';
+import scores from './scores';
 import classement from './classement';
+import equipes from './equipes';
 import entre from './links';
 
 export default combineReducers({
-    score,
+    scores,
     classement,
+    equipes,
     entrer: entre
 }) 

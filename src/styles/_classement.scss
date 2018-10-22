@@ -14,6 +14,17 @@
         border-radius: 5px;
         box-shadow: 0 0 5px black;
         cursor: pointer;
+        transition: animation 0.2s;
+        .fa-sync{
+            animation-name: refresher;
+            animation-duration: 20s;
+            animation-iteration-count: infinite;
+        }
+        &:hover{
+            .fa-sync{
+                animation: none;
+            }
+        }
     }
     .fsf-logo{
         text-align: center;

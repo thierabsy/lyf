@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { avoirClassement, avoirEquipes, avoirScores } from './store/actions';
 
 import Accueil from './components/Accueil';
 import Classement from './components/Classement';
@@ -11,6 +14,11 @@ import Footer from './components/shared/Footer';
 import PageNotFound from './components/shared/404';
 
 class AppRoutes extends Component {
+    componentDidMount(){
+        this.props.avoirClassement();
+        this.props.avoirScores();
+        this.props.avoirEquipes();
+    }
     render() {
         return (
             <>
@@ -36,4 +44,11 @@ class AppRoutes extends Component {
     }
 }
 
-export default AppRoutes;
+// On extrait le classement dans le store ===> maintenant accessible via props
+const mapStateToProps = ({ entrer }) => {
+    return { entrer }
+  }
+  
+  export default connect(mapStateToProps, {avoirClassement,  avoirEquipes, avoirScores })(AppRoutes);
+
+// export default AppRoutes;

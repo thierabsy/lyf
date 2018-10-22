@@ -5,17 +5,11 @@ import AppRoutes from './AppRoutes';
 import EntrerEquipe from "./components/EntrerEquipe";
 import EntrerScore from "./components/EntrerScore";
 
-//import action 
-import { avoirScore, avoirClassement } from './store/actions';
-
 class App extends Component {
   componentDidMount(){
-    this.props.avoirScore();
-    this.props.avoirClassement();
-
   }
   render() {
-    
+
     return (
       <div className="App">
           <AppRoutes />
@@ -34,8 +28,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({score, classement, entrer}) => {
-  return {score, classement, entrer}
+const mapStateToProps = ({ entrer }) => {
+  return { entrer }
 }
 
-export default connect(mapStateToProps, {avoirScore, avoirClassement})(App);
+export default connect(mapStateToProps, null)(App);

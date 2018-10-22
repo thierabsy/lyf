@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import EntrerEquipeForm from './equipes/EntrerEquipeForm';
 
-import { entrer, postAction, getAction } from '../store/actions';
+import { entrer, postAction, avoirClassement } from '../store/actions';
 
 export class EntrerEquipe extends Component {
     constructor(props){
@@ -35,7 +35,9 @@ export class EntrerEquipe extends Component {
             equipe : {}
         })
         // Annule l'activation d'entrer une équipe
-        this.props.entrer("")
+        this.props.entrer("");
+        // Met à jour le classement
+        this.props.avoirClassement()
     }
 
     postEquipe(e){
@@ -71,4 +73,4 @@ export class EntrerEquipe extends Component {
   
 // } 
 
-export default connect(null, { entrer, postAction, getAction })(EntrerEquipe)
+export default connect(null, { entrer, postAction, avoirClassement })(EntrerEquipe)
