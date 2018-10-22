@@ -39,25 +39,17 @@ export const getAction = (route) => async (dispatch) => {
 }
 
 // action pour poster un formulaire avec la destitation et l'objet
-export const postAction = (e, route, values) => async dispatch => {
+export const postAction = (e, route, values) => async  dispatch => {
     e.preventDefault();
     // Combinaison entre l'url racine et la destination
     const url = rootPath + route;
 
-    await axios.post(
-            url, 
-            // {
-            //     headers: {
-            //         "Accept": "Application/json",
-            //         "Content-Type": "Application/json"
-            //     }
-            // }, 
-            values
-        )  
-        .catch(function (error) {
-            // handle error
-            console.log("post-err",error);
+    await axios.post( url, values)
+            .catch(function (error) {
+                console.log("post-err",error); 
         });
 
-    dispatch({ type: POST_ACTION, payload: null });
+    dispatch({ type: POST_ACTION, payload: null })
+
+    getAction("classement");
 }

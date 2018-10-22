@@ -8,7 +8,10 @@ export class EntrerEquipe extends Component {
     constructor(props){
         super(props)
         this.state = {
-            equipe: {}
+            equipe: {
+                nom_equipe: "",
+                annee_creation: ""
+            },
         }
         this.inputChange = this.inputChange.bind(this); 
         this.annuler = this.annuler.bind(this);
@@ -38,10 +41,7 @@ export class EntrerEquipe extends Component {
     postEquipe(e){
 
         // On post l'équipe avec l'action 
-        this.props.postAction(e, "equipe", this.state.score);
-
-        // On rafraichit les donnees du tableau
-        this.props.getAction("classement");
+        this.props.postAction(e, "equipe", this.state.equipe);
 
         // Vide l'object equipe du state
         this.setState({
@@ -49,7 +49,7 @@ export class EntrerEquipe extends Component {
         });
     }
     render() {
-        // console.log("EQUIPE::: ", this.state.equipe);
+        // console.log("equipe", this.state.equipe);
         return (
             <div className="entrer-overlay">
                 <div className="EntrerEquipe">

@@ -16,8 +16,10 @@ class Equipes extends Component {
   render() {
 
     return (
-      <div className="TD Classement">
-        Equipes
+      <div className="TD Equipes">
+        <div className="container">
+          Equipes
+        </div>
       </div>
     )
   }

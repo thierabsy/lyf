@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
 const renderTableau = (classement) => {
-    if(classement){
        return(
         //    La table devient responsive si la taille de l'ecran est < 572px en ajoutant la classe "table-responsive"
         <table className={`table ${window.innerHeight < 572 ? "table-responsive" : ""} table-bordered`} > 
@@ -20,7 +19,9 @@ const renderTableau = (classement) => {
             </thead>
             <tbody>
                 { // Loop ligne par ligne du tableau de classement
-                    classement.map((col, index) => {
+                   Object.keys(classement).length > 0 ?
+                   // Ligne(s) s'il y a des donnees
+                   classement.map((col, index) => {
                         return(
                             <tr key={index}>
                                 <td> { index + 1} </td> 
@@ -32,13 +33,22 @@ const renderTableau = (classement) => {
                                 <td> { col.position.defaite } </td> 
                             </tr>  
                         )
-                    })
+                    }) : 
+                    // Ligne s'il n'y a pas de donnees
+                     <tr>
+                        <td> - </td> 
+                        <td colSpan="2"> - </td> 
+                        <td> - </td> 
+                        <td> - </td> 
+                        <td> - </td> 
+                        <td> - </td> 
+                        <td> - </td> 
+                    </tr> 
                 }
             </tbody>
         </table>
        )
     }
-}
 
 const Tableau = ({ classement }) => {
     

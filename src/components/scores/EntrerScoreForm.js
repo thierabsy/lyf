@@ -110,7 +110,7 @@ const EntrerScoreForm = ({sc, options, event, annuler, postAction}) => {
                 />
                 <button 
                     className="btn btn-block btnSubmit"
-                    onClick={(e) => { postAction(e, "score", sc)}} 
+                    onClick={(e) => { postAction(e)}} 
                 >Enregistrer ce score</button>
             </div>
         </div>    

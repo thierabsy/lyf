@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import EntrerScoreForm from './scores/EntrerScoreForm';
 
 import { entrer, postAction, getAction } from '../store/actions';
-import { classement } from '../store/data/classement';
 
 export class EntrerScore extends Component {
     constructor(props){
@@ -57,9 +56,6 @@ export class EntrerScore extends Component {
         // On post le score avec l'action 
         this.props.postAction(e, "score", this.state.score);
 
-        // On rafraichit les donnees du tableau
-        this.props.getAction("classement");
-
         // Vide l'object equipe du state
         this.setState({
             score : {}
@@ -69,10 +65,9 @@ export class EntrerScore extends Component {
     
 
     render() {
-        const options = this.props.classement.map(({equipe_id, nom_equipe}) => ({equipe_id, nom_equipe}));
-        console.log(options);
 
-        console.log("score", this.state.score);
+        // Options dans le champ select equipe
+        const options = this.props.classement.map(({equipe_id, nom_equipe}) => ({equipe_id, nom_equipe}));
         return (
             <div className="entrer-overlay">
                 <div className="EntrerScore">

@@ -5,7 +5,9 @@ class Scores extends Component {
   render() {
     return (
       <div className="TD Scores">
-        Scores
+        <div className="container">
+            Scores
+        </div>
       </div>
     )
   }

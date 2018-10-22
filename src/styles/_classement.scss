@@ -1,19 +1,20 @@
 
 
 .Classement{
-    padding-top: 50px;
-    min-height: calc(100vh - 56px - 34px);
     position: relative;
-    // z-index: -1;
-    // .overlay{
-    //     position: absolute;
-    //     top: 0;
-    //     bottom: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     background: rgba(255,255,255,0.8);
-    //     // z-index: -1;
-    // }
+
+    // Refresh le tableau de classement
+    .refresher {
+        position: absolute;
+        top: 47%;
+        font-size: 40px;
+        padding: 10px;
+        background: rgba(0,0,0,0.5);
+        color: #e7e4e1;
+        border-radius: 5px;
+        box-shadow: 0 0 5px black;
+        cursor: pointer;
+    }
     .fsf-logo{
         text-align: center;
         padding: 10px;

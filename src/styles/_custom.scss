@@ -4,6 +4,7 @@ body{
     background-image: url(/img/slss.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     position: relative;
     &:before {
         content: "";
@@ -30,9 +31,10 @@ a{
     flex-direction: column;
 }
 
-// .TD{
-//     min-height: 650px;
-// }
+.TD{
+    padding-top: 50px;
+    min-height: calc(100vh - 56px - 34px);
+}
 /* ==================================
 **  MENU - NAVIGATION
  ====================================*/
@@ -153,7 +155,7 @@ footer{
 
 /* ==================================
 ** ATTRIBUTS PARTAGES
- ====================================*/
+ *====================================*/
 
  // Overlay disponible dans EntrerEquipe - EntrerScore
 .entrer-overlay{
@@ -166,4 +168,27 @@ footer{
     height: 100vh;
     z-index: 1000;
     overflow-y: auto;
+}
+
+/* ==================================
+** PAGES INTROUVABLES
+* ====================================*/
+
+.PageNotFound {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url(/img/foot-national.png);
+    background-repeat: no-repeat;
+    background-position: center 11%;
+    h3{
+        color: $color5;
+        font-weight: bold;
+    }
+    p{
+        font-weight: bold;
+    }
 }

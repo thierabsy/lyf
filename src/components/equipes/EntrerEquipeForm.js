@@ -100,7 +100,7 @@ const EntrerEquipeForm = ({eq , event, annuler, postAction}) => {
                 />
                 <button 
                     className="btn btn-block btnSubmit"
-                    onClick={(e) => { postAction(e, "equipe", eq)}} 
+                    onClick={(e) => { postAction(e)}} 
                 >Enregistrer l'Equipe</button>
             </form>
         </div>    

@@ -12,16 +12,22 @@ class Classement extends Component {
     this.state = {
       classement:[]
     }
+    this.refreshTable = this.refreshTable.bind(this);
   }
   componentDidMount(){
     this.props.avoirClassement();
+    this.props.getAction("classement");
+  }
+  refreshTable(){
     this.props.getAction("classement");
   }
   render() {
     
     return (
       <div className="TD Classement">
-        <div className="overlay"></div>
+        <div className="refresher" onClick={() => this.refreshTable()}>
+          <i className="fas fa-sync" />
+        </div>
           <div className="container">
             <div className="fsf-logo" >
               <img src="img/fsf.jpg" alt="LYF" />

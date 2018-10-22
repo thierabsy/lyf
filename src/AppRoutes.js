@@ -8,6 +8,7 @@ import Equipes from './components/Equipes';
 
 import Header from './components/shared/Header';
 import Footer from './components/shared/Footer';
+import PageNotFound from './components/shared/404';
 
 class AppRoutes extends Component {
     render() {
@@ -22,8 +23,10 @@ class AppRoutes extends Component {
                         <Switch>
                             <Route path="/classement" component={Classement} />
                             <Route path="/scores" component={Scores} />
-                            <Route path="/equipes" component={Equipes} />
+                            <Route exact path="/equipes" component={Equipes} />
+                            <Route path="/equipes/:equipe_id" component={PageNotFound} />
                             <Route exact path="/" component={Accueil} />
+                            <Route path="*" component={PageNotFound} />
                         </Switch>
                         <Footer />
                     </>
