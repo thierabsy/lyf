@@ -24,6 +24,15 @@ export class EntrerScore extends Component {
         this.postScore = this.postScore.bind(this);
     }
 
+    componentDidMount(){
+        if(this.props.faire === "modifier"){
+            this.props.updateData &&
+            this.setState({
+                score: this.props.updateData
+            })
+        }
+    }
+
     // Change la valeur state si le champ change dans le formulaire
     inputChange(e){ 
         this.setState({
@@ -55,8 +64,11 @@ export class EntrerScore extends Component {
 
     postScore(e){
 
-        // On post le score avec l'action 
-        this.props.postAction(e, "score", this.state.score);
+        // On post l'équipe avec l'action post pour creer une nouvelle equipe
+        this.props.faire === "creer" && this.props.actionType(e, "score", this.state.equipe);
+
+        // On post l'équipe avec l'action update pour mettre à jour une équipe
+        this.props.faire === "modifier" && this.props.actionType(e, "update-score", this.state.equipe);
 
         // Vide l'object equipe du state
         this.setState({

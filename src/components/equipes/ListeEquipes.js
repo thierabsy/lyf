@@ -1,0 +1,42 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import BtnAction from './BtnAction';
+
+const ListeEquipes = ({ equipes, supprimer, btnActionClick, getDataToUpdate }) => {
+    return(
+        <div className="ListeEquipes">
+            {
+                equipes &&
+                equipes.map((eq, index) => {
+                    return <div key={ index } className="equipe" >
+                        <div className="equipe-wrapper">
+                            <div className="equipe-actions">
+                                <BtnAction 
+                                    id={eq._id} 
+                                    modifier={ getDataToUpdate } 
+                                    supprimer={ supprimer } 
+                                    btnActionClick={btnActionClick} 
+                                />
+                            </div>
+                            <div className="equipe-logo">
+                                <img 
+                                    src={
+                                        eq.logo ? eq.logo :
+                                        "img/fsf.png"
+                                    } 
+                                    className="equipe-logo" 
+                                    alt={ eq.nom_equipe } 
+                                />
+                            </div>
+                             <p> <Link to={`/equipes/${eq._id}`}> { eq.nom_equipe } </Link> </p> 
+                        </div>
+                    </div>
+                })
+            }
+        </div>    
+    )
+                            
+}
+
+export default ListeEquipes;

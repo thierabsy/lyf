@@ -1,15 +1,17 @@
 import axios from 'axios';
 
-import { AVOIR_SCORE, AVOIR_CLASSEMENT, AVOIR_EQUIPE, ENTRER, POST_ACTION } from '../types';
+import { AVOIR_SCORE, AVOIR_CLASSEMENT, AVOIR_EQUIPE, 
+        ENTRER, POST_ACTION, UPDATE_ACTION, DELETE_ACTION 
+    } from '../types';
 
 import { rootPath }  from '../../utils/path';
 
 
 // action pour active le type d'action à entrer entre score ou equipe
-export const entrer = (entre) => {
+export const entrer = (entree) => {
     return {
         type : ENTRER,
-        payload: entre
+        payload: entree
     }
 }
 
@@ -22,15 +24,15 @@ const getDataAction = (route, type) => async (dispatch) => {
 
     dispatch({ type: type, payload: json.data })
 }
-
+// Avoir données avec la function getDataAction, paramètres: route et type action à fournir
 export const avoirClassement = (route = "classement", type = AVOIR_CLASSEMENT) => getDataAction(route, type);
 export const avoirScores = (route = "scores", type = AVOIR_SCORE) => getDataAction(route, type);
 export const avoirEquipes = (route = "equipes", type = AVOIR_EQUIPE) => getDataAction(route, type);
 
 
 // action pour poster un formulaire avec la destitation et l'objet
-export const postAction = (e, route, values) => async  dispatch => {
-    e.preventDefault();
+export const postAction = (route, values) => async  dispatch => {
+    
     // Combinaison entre l'url racine et la destination
     const url = rootPath + route;
 
@@ -40,4 +42,32 @@ export const postAction = (e, route, values) => async  dispatch => {
         });
 
     dispatch({ type: POST_ACTION, payload: null })
+}
+
+// action pour mettre à jour un formulaire avec la destitation et l'objet
+export const updateAction = (route, id, values) => async  dispatch => {
+    
+    // Combinaison entre l'url racine et la destination
+    const url = rootPath + route + "/" + id;
+    console.log(url);
+    await axios.put( url, values)
+            .catch(function (error) {
+                console.log("update-err",error); 
+        });
+
+    dispatch({ type: UPDATE_ACTION, payload: null })
+}
+
+// action pour mettre à jour un formulaire avec la destitation et l'objet
+export const deleteAction = (route, id) => async  dispatch => {
+    
+    // Combinaison entre l'url racine et la destination
+    const url = rootPath + route + "/" + id;
+    console.log(url);
+    await axios.delete( url )
+            .catch(function (error) {
+                console.log("delete-err",error); 
+        });
+
+    dispatch({ type: DELETE_ACTION, payload: null })
 }

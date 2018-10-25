@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.scss';
 import AppRoutes from './AppRoutes';
-import EntrerEquipe from "./components/EntrerEquipe";
-import EntrerScore from "./components/EntrerScore";
 
 class App extends Component {
   componentDidMount(){
@@ -12,17 +10,9 @@ class App extends Component {
 
     return (
       <div className="App">
+
           <AppRoutes />
 
-          {/* Visible uniquement si on a cliqué sur le button "Entrer Equipe" */}
-          {
-            this.props.entrer === "equipe" && <EntrerEquipe />
-          }
-
-          {/* Visible uniquement si on a cliqué sur le button "Entrer Equipe" */}
-          {
-            this.props.entrer === "score" && <EntrerScore />
-          }
       </div>
     );
   }

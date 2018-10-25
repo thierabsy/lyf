@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
+import { path } from '../../utils/path';
 
 class Header extends Component {
     constructor(props){
@@ -24,7 +25,7 @@ class Header extends Component {
                 <div className="container"> 
                     <header>
                         <div className="header-item logo">
-                            <img src="img/yux.png" alt="LYF" />
+                            <img src={`${path}/img/yux.png`} alt="LYF" />
                         </div>
                         <div className="header-item navigation" onClick={this.ouvreMenu} >  {/* En cliquant la sur Menu ou icon, on ouvre le menu */}
                             <div className="ouvre-menu">Menu</div>

@@ -1,7 +1,11 @@
 
+// IMPORT DES STYLES DU DOSSIER styles
+
 @import './styles/variables';
 @import './styles/palette';
 @import './styles/colors';
+@import './styles/mixins';
+
 @import './styles/accueil';
 @import './styles/classement';
 @import './styles/scores';

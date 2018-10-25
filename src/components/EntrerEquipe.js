@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import EntrerEquipeForm from './equipes/EntrerEquipeForm';
 
-import { entrer, postAction, avoirClassement } from '../store/actions';
+import { entrer, postAction, avoirClassement, avoirEquipes } from '../store/actions';
 
 export class EntrerEquipe extends Component {
     constructor(props){
@@ -16,6 +16,14 @@ export class EntrerEquipe extends Component {
         this.inputChange = this.inputChange.bind(this); 
         this.annuler = this.annuler.bind(this);
         this.postEquipe = this.postEquipe.bind(this);
+    }
+    componentDidMount(){
+        if(this.props.faire === "modifier"){
+            this.props.updateData &&
+            this.setState({
+                equipe: this.props.updateData
+            })
+        }
     }
 
     // Change la valeur du champ dans state si le champ change dans le formulaire
@@ -36,14 +44,20 @@ export class EntrerEquipe extends Component {
         })
         // Annule l'activation d'entrer une équipe
         this.props.entrer("");
-        // Met à jour le classement
-        this.props.avoirClassement()
+        // Met à jour le classement - les equipes
+        this.props.avoirClassement();
+        this.props.avoirEquipes();
     }
 
     postEquipe(e){
+        e.preventDefault();
+        // On post l'équipe avec l'action post pour creer une nouvelle equipe
+        this.props.faire === "creer" && 
+        this.props.actionType("equipe", this.state.equipe);
 
-        // On post l'équipe avec l'action 
-        this.props.postAction(e, "equipe", this.state.equipe);
+        // On post l'équipe avec l'action update pour mettre à jour une équipe
+        this.props.faire === "modifier" && 
+        this.props.actionType("update-equipe", this.props.id, this.state.equipe);
 
         // Vide l'object equipe du state
         this.setState({
@@ -51,7 +65,8 @@ export class EntrerEquipe extends Component {
         });
     }
     render() {
-        // console.log("equipe", this.state.equipe);
+        console.log("eq", this.state.equipe)
+        console.log("FAIRE", this.props.faire)
         return (
             <div className="entrer-overlay">
                 <div className="EntrerEquipe">
@@ -61,6 +76,7 @@ export class EntrerEquipe extends Component {
                             event = { this.inputChange }
                             annuler = { this.annuler }
                             postAction = { this.postEquipe }
+                            title = { this.props.title }
                         />
                     </div>
                 </div>
@@ -73,4 +89,4 @@ export class EntrerEquipe extends Component {
   
 // } 
 
-export default connect(null, { entrer, postAction, avoirClassement })(EntrerEquipe)
+export default connect(null, { entrer, postAction, avoirClassement, avoirEquipes })(EntrerEquipe)

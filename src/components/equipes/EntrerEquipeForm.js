@@ -3,7 +3,7 @@ import React from 'react';
 import TextField from '../forms/TextField'
 import DateField from '../forms/DateField'
 
-const EntrerEquipeForm = ({eq , event, annuler, postAction}) => {
+const EntrerEquipeForm = ({eq , title, event, annuler, postAction}) => {
     return(
         <div className="EntrerEquipeForm">
             {/* En clicquant sur "Annuler", on annule l'enregistrement d'une nouvelle équipe */}
@@ -11,7 +11,7 @@ const EntrerEquipeForm = ({eq , event, annuler, postAction}) => {
                 Annuler
             </div>
             <div className="form-header">
-                <h5>Entrer une nouvelle équipe</h5>
+                <h5>{ title }</h5>
                 <hr />
             </div>
             <form>
@@ -71,7 +71,7 @@ const EntrerEquipeForm = ({eq , event, annuler, postAction}) => {
                 <TextField 
                     type="text"
                     htmlFor="logo"
-                    label="Logo"
+                    label="Logo (fond transparent)"
                     name="logo"
                     id="logo"
                     placeholder="Entrer le lien du logo de l'équipe"

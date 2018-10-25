@@ -1,6 +1,5 @@
 
-.EntrerEquipe{
-}
+
 .EntrerScoreForm,
 .EntrerEquipeForm {
     max-width: 400px; 
@@ -48,3 +47,200 @@
         box-shadow: 0 0 10px black;
     }
 } 
+
+.Equipes{
+    .equipes-intro{
+        text-align: center;
+        h3{
+
+        }
+        .btn{
+            background: $color1;
+            color: white;
+            border: 1px solid rgba(0, 0, 0, .1);
+        }
+    }
+    
+}
+
+.ListeEquipes{
+    position: relative;
+    display: grid;
+    flex-wrap: wrap;
+    grid-template-columns: 1fr 1fr 1fr;
+    @include mediaQuery(998px){
+        grid-template-columns: 1fr 1fr;
+    }
+    @include mediaQuery(670px){
+        // grid-template-columns: 1fr 1fr;
+        .equipe-wrapper{
+            width: 200px !important;
+            .equipe-logo{
+                width: 180px !important;
+                img{
+                    width: 150px !important;
+                    height: 150px !important; 
+                    margin: 0  !important;
+                }
+            }
+        }
+    }
+    @include mediaQuery(470px){
+        grid-template-columns: 1fr ;
+        .equipe-wrapper{
+            width: 300px !important;
+            .equipe-logo{
+                width: 250px !important;
+                margin: auto;
+                img{
+                    width: 200px !important;
+                    height: 200px !important;
+                    margin: 0 25px !important;
+                }
+            }
+        }
+    }
+    .equipe{
+        margin: 20px 10px;
+        flex-basis: 33.33%;
+        flex: 1;
+        .equipe-wrapper{
+            position: relative;
+            background: white;
+            margin: auto;
+            width: 300px;
+            border: 5px solid lightgray;
+            transition: all 0.5s;
+            &:hover{
+                border: 5px solid $color1;
+                p{
+                    background: $color1;
+                }
+            }
+            .equipe-logo{
+                width: 250px;
+                margin: auto;
+                img{
+                    width: 200px;
+                    height: 200px;
+                    margin: 0 25px;
+                }
+            }
+            p{
+                margin-bottom: 0;
+                padding: 10px;
+                text-align: center;
+                background: linear-gradient(to bottom, lightgrey, lightgrey, grey);
+                color: black;
+                text-transform: uppercase;
+                font-weight: bold;            
+                transition: all 0.5s;
+                a{
+                    color: black !important;
+                    display: block;
+                }
+    
+            }
+        }
+        .equipe-actions{
+            position: absolute;
+            right: 0;
+            padding: 10px 15px;
+        }
+    }
+}
+.BtnAction{
+    text-align: right;
+    .fa-ellipsis-v{
+        color: rgba(0,0,0,0.4);
+        cursor: pointer;
+    }
+    ul.list-group{
+        display: none;
+        text-align: left;
+        box-shadow:  0 0 rgba(0,0,0,0.4);
+        &.selected{
+            display: block;
+        }
+        li.list-group-item{
+            background: $color1;
+            color: white;
+            padding: 5px;
+            cursor: pointer;
+            a{
+                color: white !important;
+            }
+        } 
+    }
+}
+
+.delete-equipe {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: $color1;
+    color: white;
+    text-align: center;
+    width: 250px;
+    height: 150px;
+    border-radius: 10px;
+    z-index: 10;
+    overflow: hidden;
+    box-shadow: 0 0 150px black;
+    .delete-text{
+        height: 120px;
+        padding: 30px 12px;
+        font-size: 20px;
+    }
+    .delete-boutons{
+        height: 30px;
+        .bouton{
+            width: 125px;
+            height: 100%;
+            float: left;
+            cursor: pointer;
+            &.confirm{
+                background: darkred;
+            }
+            &.annuler{
+                background: grey;
+            }
+        }
+    }
+}
+
+/*=================================================
+**  STYLE POUR LA PAGE D'UNE EQUIPE
+==================================================*/
+.top-buttons{
+    text-align: center;
+    .btn{
+        margin: 5px;
+    }
+}
+.equipe-intro{
+    text-align: center;
+    margin-bottom: 30px;
+    h3{
+        // color: $color1;
+        font-weight: bold;
+    }
+}
+.details-item {
+    float: left;
+    width: 50%;
+    margin-bottom: 20px;
+    span{
+        color: $color1;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+}
+.loader{
+    text-align: center;
+    img{
+        width: 150px;
+        height: 150px;
+    }
+}
