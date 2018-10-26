@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { avoirEquipes, entrer, updateAction, deleteAction } from '../store/actions';
 import EntrerEquipe  from './EntrerEquipe';
@@ -66,7 +67,7 @@ class EquipePage extends Component {
           }
         <div className="container">
           <div className="top-buttons">
-            <button className="btn "><i className="fas fa-angle-left" /> Liste des équipes</button>
+            <button className="btn "><Link to="/equipes"><i className="fas fa-angle-left" /> Liste des équipes</Link> </button>
             <button className="btn btn-info" onClick={() => this.props.entrer("update-equipe")}>Modifier</button>
             <button className="btn btn-danger" onClick={() => this.props.entrer("delete-equipe")} >Supprimer</button>
           </div>

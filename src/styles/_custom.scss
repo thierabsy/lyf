@@ -179,3 +179,31 @@ footer{
         font-weight: bold;
     }
 }
+
+/* ==================================
+** BOUTON POUR VOIR DETAILS - MODIFIER - SUPPRIMER
+* ====================================*/
+.BtnAction{
+    text-align: right;
+    .fas{
+        color: rgba(0,0,0,0.4);
+        cursor: pointer;
+    }
+    ul.list-group{
+        display: none;
+        text-align: left;
+        box-shadow:  0 0 rgba(0,0,0,0.4);
+        &.selected{
+            display: block;
+        }
+        li.list-group-item{
+            background: $color1;
+            color: white;
+            padding: 5px;
+            cursor: pointer;
+            a{
+                color: white !important;
+            }
+        } 
+    }
+}

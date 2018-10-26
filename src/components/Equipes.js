@@ -11,6 +11,7 @@ class Equipes extends Component {
     super(props);
     this.state = {
       equipes:[],
+      equipe:{},
       id: ""
     }
     this.btnActionClick = this.btnActionClick.bind(this);
@@ -100,7 +101,7 @@ class Equipes extends Component {
           {/* Visible uniquement si on a cliqué sur le button "Supprimer" */}
           {
             this.props.entree === "delete-equipe" && 
-            <div className="delete-equipe">
+            <div className="deleteAction">
                <div className="delete-text">
                   Etes-vous sûr de vouloir supprimer cette équipe?
                </div>

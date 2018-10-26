@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import Loader from '../shared/Loader'
 import { path } from '../../utils/path';
 
 
@@ -61,9 +62,7 @@ const EquipePageDetails = ({ equipe }) => {
           </>
         )
       } else {    
-          return <div className="loader">
-                    <img src={`${path}/img/loader3.gif`} alt="Loader" />
-                </div>
+          return <Loader />
       }
                             
 }

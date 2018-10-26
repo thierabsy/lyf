@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import BtnAction from './BtnAction';
+import BtnAction from '../shared/BtnAction';
 
 const ListeEquipes = ({ equipes, supprimer, btnActionClick, getDataToUpdate }) => {
     return(
@@ -12,7 +12,9 @@ const ListeEquipes = ({ equipes, supprimer, btnActionClick, getDataToUpdate }) =
                     return <div key={ index } className="equipe" >
                         <div className="equipe-wrapper">
                             <div className="equipe-actions">
-                                <BtnAction 
+                                <BtnAction
+                                    type="equipes" 
+                                    icon="fa-ellipsis-v" 
                                     id={eq._id} 
                                     modifier={ getDataToUpdate } 
                                     supprimer={ supprimer } 

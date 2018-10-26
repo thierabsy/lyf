@@ -2,7 +2,7 @@ import React from 'react'
 
 const SelectField = ({htmlFor="", label="", name="", id="", placeholder="", value="",
                         disabled=false, required=false, options=[], event={function(){return null}} ,
-                        optionValue="", optionName=""
+                        optionValue="", optionName="", optionDisabled= false, errorClass=""
                     }) => {
         return (
             <div className="form-group">
@@ -13,7 +13,7 @@ const SelectField = ({htmlFor="", label="", name="", id="", placeholder="", valu
                 <select 
                     name={name} 
                     id={id}
-                    className="form-control" 
+                    className={ `form-control ${errorClass}` }
                     placeholder={ placeholder }
                     onChange={(e) => event(e)}
                     disabled={disabled}
@@ -23,7 +23,14 @@ const SelectField = ({htmlFor="", label="", name="", id="", placeholder="", valu
                 {/* Loop s'il y a des options sinon return option "Pas d'options" */}
                 {
                     options 
-                    ? <> <option>Choisir...</option> {options.map((opt, index) => (  <option key={index} value={ opt[optionValue]} > { opt[optionName] } </option>))} </>
+                    ? <> 
+                        <option>Choisir...</option> 
+                        {
+                            options.map((opt, index) => (  
+                            <option key={index} value={ opt[optionValue]} disabled={ opt.optionDisabled } > { opt[optionName] } </option>
+                        ))
+                        } 
+                    </>
                     :
                         <option>Pas d'options...</option>
                 }

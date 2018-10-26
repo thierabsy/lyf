@@ -65,8 +65,7 @@ export class EntrerEquipe extends Component {
         });
     }
     render() {
-        console.log("eq", this.state.equipe)
-        console.log("FAIRE", this.props.faire)
+        
         return (
             <div className="entrer-overlay">
                 <div className="EntrerEquipe">

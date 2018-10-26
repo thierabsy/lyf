@@ -6,7 +6,7 @@ import NumberField from '../forms/NumberField'
 import DateField from '../forms/DateField'
 import TextareaField from '../forms/TextareaField'
 
-const EntrerScoreForm = ({sc, options, event, annuler, postAction}) => {
+const EntrerScoreForm = ({sc, errorClass, options, event, annuler, postAction}) => {
     return(
         <div className="EntrerScoreForm">
             {/* En clicquant sur "Annuler", on annule l'enregistrement d'une nouvelle équipe */}
@@ -38,8 +38,8 @@ const EntrerScoreForm = ({sc, options, event, annuler, postAction}) => {
                             name="date_match"
                             id="date_match"
                             placeholder="date_match"
-                            min={ moment().subtract(365, "days").format("L") } // La date maximale qu'on peut prendre est la date d-
-                            max={ moment().format("L") } // La date maximale qu'on peut prendre est la date d'aujourd'hui
+                            min={ moment().subtract(365, "days").format("YYYY-MM-DD") } // La date maximale qu'on peut prendre est la date d-
+                            max={ moment().format("YYYY-MM-DD") } // La date maximale qu'on peut prendre est la date d'aujourd'hui
                             required={true}
                             value={sc.date_match ? sc.date_match : ""} //S'il y a cet attribut sur le state, il devient la valeur de ce champs sinon "" 
                             event={event} // A chaque changement dans ce champ, il y a le changement de sa valeur dans le state
@@ -53,6 +53,7 @@ const EntrerScoreForm = ({sc, options, event, annuler, postAction}) => {
                             label="Selection Equipe 1"
                             name="equipe_1_id"
                             id="equipe_1"
+                            errorClass={errorClass}
                             placeholder="equipe 1"
                             required={true}
                             options={options}
@@ -79,6 +80,7 @@ const EntrerScoreForm = ({sc, options, event, annuler, postAction}) => {
                             name="equipe_2_id"
                             id="equipe_2"
                             placeholder="equipe 2"
+                            errorClass={ errorClass }
                             required={true}
                             options={options}
                             optionValue="equipe_id" 

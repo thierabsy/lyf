@@ -149,32 +149,8 @@
         }
     }
 }
-.BtnAction{
-    text-align: right;
-    .fa-ellipsis-v{
-        color: rgba(0,0,0,0.4);
-        cursor: pointer;
-    }
-    ul.list-group{
-        display: none;
-        text-align: left;
-        box-shadow:  0 0 rgba(0,0,0,0.4);
-        &.selected{
-            display: block;
-        }
-        li.list-group-item{
-            background: $color1;
-            color: white;
-            padding: 5px;
-            cursor: pointer;
-            a{
-                color: white !important;
-            }
-        } 
-    }
-}
 
-.delete-equipe {
+.deleteAction {
     position: fixed;
     left: 50%;
     top: 50%;
@@ -217,6 +193,9 @@
     text-align: center;
     .btn{
         margin: 5px;
+    }
+    a{
+        color: black;
     }
 }
 .equipe-intro{

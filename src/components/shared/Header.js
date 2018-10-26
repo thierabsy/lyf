@@ -45,10 +45,10 @@ class Header extends Component {
                                     <NavLink to="/scores" activeClassName="selected">Scores</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/calendrier" activeClassName="selected">Calendrier</NavLink>
+                                    <NavLink to="/equipes" activeClassName="selected">Equipes</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/equipes" activeClassName="selected">Equipes</NavLink>
+                                    <NavLink to="/calendrier" activeClassName="selected">Calendrier</NavLink>
                                 </li>
                             </ul>
                         </div>

@@ -2,4 +2,80 @@
 
 .Scores{
     min-height: calc(100vh - 34px);
+    .scores-intro{
+        text-align: center;
+        font-weight: bold;
+        button{
+            background: $color1;
+            color: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+    }
+    .journee{
+        // margin-bottom: 10px;
+        .journee-n {
+            text-align: center;
+            background: black;
+            color: $color1;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding: 5px;
+        }
+        .score-wrapper:nth-of-type(2n){
+            background: lightgrey;
+        }
+        .score-actions{
+            // text-align: right;
+            width: 90px;
+            position: relative;
+            .BtnAction{
+                text-align: right;
+                ul.list-group.selected{
+                    position: absolute;
+                }
+            }
+        }
+        .score-items{
+            display: inline-flex;
+            width: 100%;
+            padding: 10px;
+            &:nth-of-type(2n){
+                background: lightblue;
+            }
+            .date{
+                width: 90px;
+            }
+            .score-item{
+                width: calc(100% - 90px * 2);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .score-item-wrapper{
+                    width: 48%;
+                    &.equipe1{
+                        text-align: right;
+                    }
+                    &.equipe2{
+                        text-align: left;
+                    }
+                    &.victoire{
+                        font-weight: bold;
+                        .score-n{
+                            background: $color1;
+                        }
+                    }
+                    &.defaite{
+                        .score-n{
+                            background: #feabab !important;
+                        }
+                    }
+                }
+                .score-n{
+                    background: lightgrey;
+                    padding: 5px 10px;
+                    margin: 3px;
+                }
+            }
+        }
+    }
 }
