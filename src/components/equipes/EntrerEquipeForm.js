@@ -8,7 +8,7 @@ const EntrerEquipeForm = ({eq , title, event, annuler, postAction}) => {
         <div className="EntrerEquipeForm">
             {/* En clicquant sur "Annuler", on annule l'enregistrement d'une nouvelle équipe */}
             <div className="annuler" onClick={() => annuler()} >
-                Annuler
+                Fermer
             </div>
             <div className="form-header">
                 <h5>{ title }</h5>

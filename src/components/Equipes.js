@@ -63,13 +63,13 @@ class Equipes extends Component {
     this.props.entrer("delete-equipe");
     this.setState({ id })
     // On ferme le menu option
-    // document.getElementsByClassName("selected") &&
-    // document.getElementsByClassName("selected").classList.toggle("selected");
+    let selectOption = document.getElementById(id);
+    selectOption && selectOption.classList.toggle("selected");
   }
   // Suppression de l'équipe ou annulation de suppression
   deleteEquipe(){
     this.props.deleteAction("delete-equipe", this.state.id);
-    // this.props.avoirEquipes("");
+    this.props.avoirEquipes();
     this.props.entrer("");
   }
 

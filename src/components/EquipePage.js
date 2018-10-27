@@ -23,6 +23,7 @@ class EquipePage extends Component {
     // On ferme le menu option
     // document.getElementsByClassName("selected") &&
     // document.getElementsByClassName("selected").classList.toggle("selected");
+    
   }
   // Suppression de l'équipe ou annulation de suppression
   deleteEquipe(){
@@ -38,7 +39,7 @@ class EquipePage extends Component {
       ...equipe,
       annee_creation : moment(equipe && equipe.annee_creation).format("YYYY-MM-DD")
     }
-    console.log("updateData", updateData)
+    
     return (
       <div className="TD EquipePage">
         {/* Visible uniquement si on a cliqué sur le button "Modifier" */}
@@ -55,7 +56,7 @@ class EquipePage extends Component {
           {/* Visible uniquement si on a cliqué sur le button "Supprimer" */}
           {
             this.props.entree === "delete-equipe" && 
-            <div className="delete-equipe">
+            <div className="deleteAction">
                <div className="delete-text">
                   Etes-vous sûr de vouloir supprimer cette équipe?
                </div>

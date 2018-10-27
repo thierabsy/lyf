@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Loader from '../shared/Loader';
 
 import BtnAction from '../shared/BtnAction';
 
@@ -7,7 +8,7 @@ const ListeEquipes = ({ equipes, supprimer, btnActionClick, getDataToUpdate }) =
     return(
         <div className="ListeEquipes">
             {
-                equipes &&
+                equipes ?
                 equipes.map((eq, index) => {
                     return <div key={ index } className="equipe" >
                         <div className="equipe-wrapper">
@@ -35,6 +36,7 @@ const ListeEquipes = ({ equipes, supprimer, btnActionClick, getDataToUpdate }) =
                         </div>
                     </div>
                 })
+                : <Loader />
             }
         </div>    
     )

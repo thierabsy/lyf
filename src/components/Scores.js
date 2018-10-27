@@ -63,22 +63,19 @@ class Scores extends Component {
   confirmDelete(id){
     this.props.entrer("delete-score");
     this.setState({ id })
-    // On ferme le menu option
-    // document.getElementsByClassName("selected") &&
-    // document.getElementsByClassName("selected").classList.toggle("selected");
+    // Ferme les options à choisir 
+    const selected = document.getElementById(id);
+    selected.classList.remove("selected");
   }
   // Suppression de l'équipe ou annulation de suppression
   deleteScore(){
     this.props.deleteAction("delete-score", this.state.id);
-    // this.props.avoirScores("");
+    this.props.avoirScores();
     this.props.entrer("");
   }
 
   render() {
     const scoresParJournee = _.groupBy(this.props.scores, sc => sc.journee);
-    console.log("scoresParJournee", scoresParJournee)
-    const scoreToUpdate = this.props.scores.filter(sc => sc._id === this.state.id)
-    console.log("scoreToUpdate", scoreToUpdate)
     return (
       <div className="TD Scores">
         

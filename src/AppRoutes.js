@@ -7,6 +7,7 @@ import { avoirClassement, avoirEquipes, avoirScores } from './store/actions';
 import Accueil from './components/Accueil';
 import Classement from './components/Classement';
 import Scores from './components/Scores';
+import ScorePage from './components/ScorePage';
 import Equipes from './components/Equipes';
 import EquipePage from './components/EquipePage';
 
@@ -26,12 +27,14 @@ class AppRoutes extends Component {
                 <BrowserRouter>
                     <>
                         {/* Le menu ne sera pas visible sur la page d'accueil. */}
-                        {
+                        {/* {
                             window.location.pathname !== "/" && <Header />
-                        }
+                        } */} 
+                        <Header />
                         <Switch>
                             <Route path="/classement" component={Classement} />
-                            <Route path="/scores" component={Scores} />
+                            <Route exact path="/scores" component={Scores} />
+                            <Route path="/scores/:score_id" component={ScorePage} />
                             <Route exact path="/equipes" component={Equipes} />
                             <Route path="/equipes/:equipe_id" component={EquipePage} />
                             <Route exact path="/" component={Accueil} />

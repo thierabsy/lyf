@@ -11,7 +11,7 @@ const EntrerScoreForm = ({sc, errorClass, options, event, annuler, postAction}) 
         <div className="EntrerScoreForm">
             {/* En clicquant sur "Annuler", on annule l'enregistrement d'une nouvelle équipe */}
             <div className="annuler" onClick={() => annuler()} >
-                Annuler
+                Fermer
             </div>
             <div className="form-header">
                 <h5>Entrer un score</h5>

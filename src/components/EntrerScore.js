@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import EntrerScoreForm from './scores/EntrerScoreForm';
+import MessageAlert from './shared/MessageAlert';
 
 import { entrer, postAction, avoirScores, avoirClassement } from '../store/actions';
 
@@ -18,10 +19,12 @@ export class EntrerScore extends Component {
                 date_match: "",
                 journee: null,
             },
-            options: []
+            options: [],
+            message: ""
         }
         this.inputChange = this.inputChange.bind(this);
         this.annuler = this.annuler.bind(this);
+        this.fermeErrors = this.fermeErrors.bind(this);
         this.postScore = this.postScore.bind(this);
         this.selectOptions = this.selectOptions.bind(this);
     }
@@ -76,28 +79,65 @@ export class EntrerScore extends Component {
         this.props.avoirClassement();
     }
 
+    fermeErrors(){
+        // Vide l'object equipe du state
+        this.setState({
+            errors : [],
+            message: ""
+        })
+    }
+
     postScore(e){
         e.preventDefault();
-        // On post le score avec l'action post pour creer une score 
-        this.props.faire === "creer" && this.props.actionType("score", this.state.score);
 
-        // On post le score avec l'action update pour mettre à jour un score
-        this.props.faire === "modifier" && this.props.actionType("update-score", this.state.score);
+        let requiredFields =  {
+            journee: "La journée est obligatoire.", 
+            date_match: "La date du match est obligatoire.",
+            equipe_1_id: "Sélection Equipe 1 est obligatoire.",
+            equipe_1_score: "Le Score de l'Equipe 1 est obligatoire.",
+            equipe_2_id: "Sélection Equipe 2 est obligatoire.",
+            equipe_2_score: "Le Score de l'Equipe 2 est obligatoire.",
+        };
+        let fields = Object.keys(requiredFields)
+                            .filter(eq => this.state.score[eq] === "" || this.state.score[eq] === null)
 
-        // Vide l'object score du state
-        this.setState({
-            score : {}
-        });
+        if(fields.length > 0){
+            let errors = [];
+            fields.forEach(err => {
+                return errors.push(requiredFields[err])
+            });
+            this.setState({ errors })
+        } else {
+
+            // On post le score avec l'action post pour creer une score 
+            this.props.faire === "creer" && this.props.actionType("score", this.state.score);
+
+            // On post le score avec l'action update pour mettre à jour un score
+            this.props.faire === "modifier" && this.props.actionType("update-score", this.state.score);
+
+            // Vide l'object score du state
+            this.setState({
+                score : {}
+            });
+
+        }
+
     }
 
     render() {
-        const validations = Object.keys(this.state.score).filter( sc => this.state.score[sc] === ("" || null))
-         console.log("validations", validations)
-         console.log("state", this.state.score)
+
         return (
             <div className="entrer-overlay">
                 <div className="EntrerScore">
                     <div className="container">
+                        { // Visible uniquement s'il y a error ou succès lors d'un post ou update
+                            ((this.state.errors && this.state.errors.length > 0) || this.state.message !== "") &&
+                            <MessageAlert 
+                                errors={ this.state.errors } 
+                                message={ this.state.message } 
+                                fermeErrors={ this.fermeErrors } 
+                            />
+                        }
                         <EntrerScoreForm 
                             options = { this.state.options }
                             sc = { this.state.score }

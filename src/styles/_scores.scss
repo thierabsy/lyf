@@ -79,3 +79,37 @@
         }
     }
 }
+
+.ScorePage{
+}
+
+.score-intro{
+    text-align: center;
+    h5{
+        
+    }
+    p{
+        margin-bottom: 0;
+    }
+}
+.score-box{
+    background: url(/img/pitch-o.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 20px;
+    font-family: monospace;
+    .score-box-wrapper{
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        padding: 40px;
+        justify-content: center;
+        color: whitesmoke;
+    
+    }
+    .score{
+
+    }
+    .score-box-center {
+        margin: 0 10px;
+    }
+}

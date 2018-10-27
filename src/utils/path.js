@@ -1,6 +1,6 @@
-export const path = "http://localhost:3000";
-// export const path = "https://murmuring-brook-27050.herokuapp.com";
+// export const path = "http://localhost:3000";
+export const path = "https://murmuring-brook-27050.herokuapp.com";
 
-// export const rootPath = "https://murmuring-brook-27050.herokuapp.com/";
-export const rootPath = "http://localhost:5001/";
+export const rootPath = "https://murmuring-brook-27050.herokuapp.com/";
+// export const rootPath = "http://localhost:5001/";
    
