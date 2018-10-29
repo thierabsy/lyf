@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { avoirUser, avoirClassement, avoirEquipes, avoirScores } from './store/actions';
@@ -28,23 +28,31 @@ class AppRoutes extends Component {
     }
     render() {
         // console.log("user", this.props.user)
-        let user = this.props.user || true;
+        let user = this.props.user || false;
         return (
             <>
                 <BrowserRouter>
                     <>
                         {/* Le menu ne sera pas visible sur la page d'accueil. */}
-                        {
-                            user && <Header />
-                        }  
-                        {/* <Header /> */}
+                        {/* {
+                            window.location.pathname !== "/" && <Header />
+                        } */} 
+                        <Header />
                         <Switch>
-                            <AuthRoute user={ user } path="/inscription" component={Inscription} />
+                            <Route path="/inscription" component={Inscription} />
                             <AuthRoute user={ user } path="/classement" component={Classement} />
-                            <AuthRoute user={ user } exact path="/scores" component={Scores} />
-                            <AuthRoute user={ user } path="/scores/:score_id" component={ScorePage} />
-                            <AuthRoute user={ user } exact path="/equipes" component={Equipes} />
-                            <AuthRoute user={ user } path="/equipes/:equipe_id" component={EquipePage} />
+                            {/* <Route path="/classement" component={Classement} /> */}
+                            <Route exact path="/scores" component={Scores} />
+                            <Route path="/scores/:score_id" component={ScorePage} />
+                            <Route exact path="/equipes" component={Equipes} />
+                            <Route path="/equipes/:equipe_id" component={EquipePage} />
+                            {/* <Route exact path="/classement" render={(props) => (
+                                true ? (
+                                    <Classement {...props} />
+                                ) : (
+                                    <Redirect to="/"/>
+                                )
+                                )}/> */}
                             <Route exact path="/" component={Accueil} />
                             <Route path="*" component={PageNotFound} />
                         </Switch>
@@ -62,3 +70,5 @@ const mapStateToProps = ({ entrer, user }) => {
   }
   
   export default connect(mapStateToProps, {avoirUser, avoirClassement,  avoirEquipes, avoirScores })(AppRoutes);
+
+// export default AppRoutes;

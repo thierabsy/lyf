@@ -107,7 +107,12 @@
     
     }
     .score{
-
+        padding: 5px;
+        background: $color1;
+        border-radius: 50%;
+        .vs{
+            font-size: 15px;
+        }
     }
     .score-box-center {
         margin: 0 10px;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import EntrerEquipe from './EntrerEquipe';
-import EntrerScore from './EntrerScore';
+import EntrerEquipe from './equipes/EntrerEquipe';
+import EntrerScore from './scores/EntrerScore';
 
 import { avoirClassement, postAction } from '../store/actions'
 import Tableau from './classement/Tableau';
@@ -22,6 +22,7 @@ class Classement extends Component {
     this.props.avoirClassement("classement");
   }
   render() {
+    // console.log(this.props)
     return (
       <div className="TD Classement">
         {/* Visible uniquement si on a cliqué sur le button "Entrer Equipe" */}

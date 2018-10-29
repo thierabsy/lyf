@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { AVOIR_SCORE, AVOIR_CLASSEMENT, AVOIR_EQUIPE, 
+import { USER, AVOIR_SCORE, AVOIR_CLASSEMENT, AVOIR_EQUIPE, 
         ENTRER, POST_ACTION, UPDATE_ACTION, DELETE_ACTION 
     } from '../types';
 
@@ -13,6 +13,16 @@ export const entrer = (entree) => {
         type : ENTRER,
         payload: entree
     }
+}
+
+// AVOIR L'UTILISATEUR CONNECTER
+export const avoirUser = () => async (dispatch) => {
+    // Combinaison entre l'url racine et la destination
+    const url = rootPath + "backend/user" ;
+
+    const json = await axios.get(url)
+
+    dispatch({ type: USER, payload: json.data })
 }
 
 // Function à utiliser pour avoir des données du server en option: route: URI de la ressource et type: le type d'action
@@ -37,37 +47,39 @@ export const postAction = (route, values) => async  dispatch => {
     const url = rootPath + route;
 
     await axios.post( url, values)
-            .catch(function (error) {
-                console.log("post-err",error); 
-        });
+        .catch(function (error) {
+            console.log("post-err",error); 
+    });
 
     dispatch({ type: POST_ACTION, payload: null })
 }
+
 
 // action pour mettre à jour un formulaire avec la destitation et l'objet
 export const updateAction = (route, id, values) => async  dispatch => {
     
     // Combinaison entre l'url racine et la destination
     const url = rootPath + route + "/" + id;
-    console.log(url);
+    
     await axios.put( url, values)
-            .catch(function (error) {
-                console.log("update-err",error); 
-        });
+        .catch(function (error) {
+            console.log("update-err",error); 
+    });
 
     dispatch({ type: UPDATE_ACTION, payload: null })
 }
+
 
 // action pour mettre à jour un formulaire avec la destitation et l'objet
 export const deleteAction = (route, id) => async  dispatch => {
     
     // Combinaison entre l'url racine et la destination
     const url = rootPath + route + "/" + id;
-    console.log(url);
+    
     await axios.delete( url )
-            .catch(function (error) {
-                console.log("delete-err",error); 
-        });
+        .catch(function (error) {
+            console.log("delete-err",error); 
+    });
 
     dispatch({ type: DELETE_ACTION, payload: null })
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import SeConnecter from './accueil/SeConnecter';
+import Authentification from './shared/Authentification';
 
 class Accueil extends Component {
   constructor(props){
@@ -9,26 +8,24 @@ class Accueil extends Component {
     this.state = {
       connect : false
     }
-    this.seConnecter = this.seConnecter.bind(this);
-  }
 
-  seConnecter(e){
-    e.preventDefault();
-    this.setState({
-      connect : true
-    })
   }
 
   render() {
+    console.log("input", this.props)
     return (
       <div className="TD Accueil">
         <div className="wrapper">
-          <div className="accueil-intro federation">
+          <div className="intro federation">
             <img src="img/fsf.jpg" alt="LYF" />
             <h5>Ligue Yux de Football</h5>
           </div>
-          <SeConnecter seConnecter={this.seConnecter} connect={this.state.connect} />
-          <div className="accueil-intro sponsor">
+          <Authentification 
+            type="connexion" 
+            titre="Se Connecter"
+            history={this.props.history}
+          />
+          <div className="intro sponsor">
             <h5>Sponsor Officiel</h5>
             <a href="http://yuxdakar.com" target="_blank">
               <img src="img/yux-logo.jpg" className="yux-logo" alt="LYF" />

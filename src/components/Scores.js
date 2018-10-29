@@ -4,7 +4,7 @@ import ListeScores from './scores/ListeScores';
 import moment from 'moment';
 import _ from 'lodash';
 
-import EntrerScore from './EntrerScore';
+import EntrerScore from './scores/EntrerScore';
 import { entrer, avoirScores, postAction, updateAction, deleteAction } from '../store/actions';
 
 class Scores extends Component {

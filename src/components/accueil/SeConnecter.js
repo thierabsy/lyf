@@ -23,7 +23,7 @@ const SeConnecter = ({connect, seConnecter}) => {
                             <div className="input-group-text">
                                 <i className="fas fa-lock" />
                             </div>
-                        </div>
+                        </div> 
                         <input type="text" name="motdepasse" id="motdepasse" className="form-control" placeholder="********" />
                     </div>
                 </div>

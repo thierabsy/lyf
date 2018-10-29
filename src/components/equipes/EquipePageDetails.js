@@ -58,6 +58,10 @@ const EquipePageDetails = ({ equipe }) => {
             <div className="maillots">
               <h5>Maillots</h5>
             </div>
+            <hr />
+            <div className="maillots">
+              <h5>Matchs</h5>
+            </div>
           </div>
           </>
         )

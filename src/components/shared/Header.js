@@ -53,7 +53,7 @@ class Header extends Component {
                             </ul>
                         </div>
                         <div className="header-item connexion">
-                            <a href="/logout"> 
+                            <a href="/backend/logout"> 
                                 <i className="fas fa-power-off" /> { window.innerWidth > 768 && "Se Déconnecter"} {/*Le texte "Se Déconnecter" ne sera pas visible en-dessous de 768px */}
                             </a>
                         </div>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { avoirEquipes, entrer, updateAction, deleteAction } from '../store/actions';
-import EntrerEquipe  from './EntrerEquipe';
+import EntrerEquipe  from './equipes/EntrerEquipe';
 import EquipePageDetails from './equipes/EquipePageDetails';
 
 class EquipePage extends Component {
@@ -20,16 +20,14 @@ class EquipePage extends Component {
   confirmDelete(id){
     this.props.entrer("delete-equipe");
     this.setState({ id })
-    // On ferme le menu option
-    // document.getElementsByClassName("selected") &&
-    // document.getElementsByClassName("selected").classList.toggle("selected");
     
   }
   // Suppression de l'équipe ou annulation de suppression
   deleteEquipe(){
-    this.props.deleteAction("delete-equipe", this.state.id);
-    // this.props.avoirEquipes("");
+    this.props.deleteAction("delete-equipe", this.props.match.params.equipe_id);
+    this.props.avoirEquipes();
     this.props.entrer("");
+    this.props.history.push("/equipes");
   }
 
   render() {
@@ -39,7 +37,7 @@ class EquipePage extends Component {
       ...equipe,
       annee_creation : moment(equipe && equipe.annee_creation).format("YYYY-MM-DD")
     }
-    
+    console.log("p",this.props)
     return (
       <div className="TD EquipePage">
         {/* Visible uniquement si on a cliqué sur le button "Modifier" */}

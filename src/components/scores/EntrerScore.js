@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import EntrerScoreForm from './scores/EntrerScoreForm';
-import MessageAlert from './shared/MessageAlert';
+import EntrerScoreForm from './EntrerScoreForm';
+import MessageAlert from '../shared/MessageAlert';
 
-import { entrer, postAction, avoirScores, avoirClassement } from '../store/actions';
+import { entrer, postAction, avoirScores, avoirClassement } from '../../store/actions';
 
 export class EntrerScore extends Component {
     constructor(props){

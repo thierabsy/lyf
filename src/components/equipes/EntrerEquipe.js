@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import EntrerEquipeForm from './equipes/EntrerEquipeForm';
+import EntrerEquipeForm from './EntrerEquipeForm';
 
-import { entrer, postAction, avoirClassement, avoirEquipes } from '../store/actions';
-import MessageAlert from './shared/MessageAlert';
+import { entrer, postAction, avoirClassement, avoirEquipes } from '../../store/actions';
+import MessageAlert from '../shared/MessageAlert';
 
 export class EntrerEquipe extends Component {
     constructor(props){
         super(props)
         this.state = {
             equipe: {
-                nom_equipe: "",
+                nom_equipe: "", 
                 annee_creation: ""
             },
             message: "",

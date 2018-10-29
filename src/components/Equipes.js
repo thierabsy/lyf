@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import ListeEquipes from './equipes/ListeEquipes';
 import moment from 'moment';
 
-import EntrerEquipe from './EntrerEquipe';
-import { entrer, avoirEquipes, postAction, updateAction, deleteAction } from '../store/actions';
+import EntrerEquipe from './equipes/EntrerEquipe';
+import { entrer, avoirUser, avoirEquipes, postAction, updateAction, deleteAction } from '../store/actions';
 
 class Equipes extends Component {
   constructor(props){
@@ -20,7 +20,7 @@ class Equipes extends Component {
     this.deleteEquipe = this.deleteEquipe.bind(this);
   }
   componentDidMount(){
-
+    this.props.avoirUser();
   } 
   btnActionClick(id){
     let listeActions = document.getElementsByClassName("actions-list");
@@ -71,6 +71,7 @@ class Equipes extends Component {
     this.props.deleteAction("delete-equipe", this.state.id);
     this.props.avoirEquipes();
     this.props.entrer("");
+    this.props.history.push("/equipes");
   }
 
   render() {
@@ -134,4 +135,4 @@ const mapStateToProps = ({ equipes, entree }) => {
   return { equipes, entree }
 }
 
-export default connect(mapStateToProps, { entrer, avoirEquipes, postAction, updateAction, deleteAction })(Equipes);
+export default connect(mapStateToProps, { entrer, avoirUser, avoirEquipes, postAction, updateAction, deleteAction })(Equipes);

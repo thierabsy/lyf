@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { avoirScores, entrer, updateAction, deleteAction } from '../store/actions';
-import EntrerScore  from './EntrerScore';
+import EntrerScore  from './scores/EntrerScore';
 import ScorePageDetails from './scores/ScorePageDetails';
 
 class ScorePage extends Component {
@@ -20,16 +20,13 @@ class ScorePage extends Component {
   confirmDelete(id){
     this.props.entrer("delete-score");
     this.setState({ id })
-    // On ferme le menu option
-    // document.getElementsByClassName("selected") &&
-    // document.getElementsByClassName("selected").classList.toggle("selected");
-    
   }
   // Suppression de l'équipe ou annulation de suppression
   deleteScore(){
-    this.props.deleteAction("delete-score", this.state.id);
-    // this.props.avoirScores("");
+    this.props.deleteAction("delete-score", this.props.match.params.score_id);
+    this.props.avoirScores();
     this.props.entrer("");
+    this.props.history.push("/scores");
   }
 
   render() {
@@ -39,7 +36,7 @@ class ScorePage extends Component {
       ...score,
       date_match : moment(score && score.date_match).format("YYYY-MM-DD")
     }
-    console.log("updateData", updateData)
+    console.log("id", this.state.id)
     return (
       <div className="TD ScorePage">
         {/* Visible uniquement si on a cliqué sur le button "Modifier" */}

@@ -1,5 +1,5 @@
 
-
+.Inscription,
 .Accueil{
     // background-image: url(/img/ball-sn.jpg);
     background: radial-gradient(ellipse at bottom, $color4 20%, green);
@@ -10,23 +10,8 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
-    .SeConnecter {
-        width: 320px;
-        padding: 30px 20px;
-        background: rgba(0,0,0,0.7);
-        margin: 20px 0;
-        box-shadow: 0 0 30px;
-        border-radius: 10px;
-        label{
-            color: white;
-        }
-        .btnSubmit{
-            background: $color5;
-            color: white;
-            font-weight: bold;
-        }
-    }
-    .accueil-intro {
+  
+    .intro {
         text-align: center;
         &.federation{
             h5{
@@ -50,5 +35,39 @@
                 }
             }
         }
+    }
+    .default{
+        font-size: 13px;
+    }
+    sup{
+        color: $color1;
+        font-weight: bold;
+    }
+}
+
+.Authentification {
+    width: 320px;
+    padding: 30px 20px;
+    background: rgba(0,0,0,0.7);
+    margin: 20px 0;
+    box-shadow: 0 0 30px;
+    border-radius: 10px;
+    label{
+        color: white;
+    }
+    .btnSubmit{
+        background: $color5;
+        color: white;
+        font-weight: bold;
+    }
+    .radioLabel {
+        display: block;
+        color: white;
+    }
+    .form-check{
+        font-size: 14px;
+    }
+    input[radio]{
+        cursor: pointer;
     }
 }
