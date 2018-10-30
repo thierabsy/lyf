@@ -6,7 +6,6 @@ import { path } from '../../utils/path';
 
 const ScorePageDetails = ({ score }) => {
     let sc = score;
-    console.log("sc", sc)
     if(sc){
         return(
           <>

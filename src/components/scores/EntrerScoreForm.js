@@ -6,7 +6,7 @@ import NumberField from '../forms/NumberField'
 import DateField from '../forms/DateField'
 import TextareaField from '../forms/TextareaField'
 
-const EntrerScoreForm = ({sc, errorClass, options, event, annuler, postAction}) => {
+const EntrerScoreForm = ({sc, title, errorClass, options, event, annuler, postAction}) => {
     return(
         <div className="EntrerScoreForm">
             {/* En clicquant sur "Annuler", on annule l'enregistrement d'une nouvelle équipe */}
@@ -14,7 +14,7 @@ const EntrerScoreForm = ({sc, errorClass, options, event, annuler, postAction}) 
                 Fermer
             </div>
             <div className="form-header">
-                <h5>Entrer un score</h5>
+                <h5>{ title }</h5>
                 <hr />
             </div>
             <div>

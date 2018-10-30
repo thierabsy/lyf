@@ -89,18 +89,20 @@ export class EntrerEquipe extends Component {
             this.props.actionType("update-equipe", this.props.id, this.state.equipe);
 
             // Vide l'object equipe du state
+            this.props.faire === "creer" &&
             this.setState({
                 equipe :  {
                     nom_equipe: "",
                     annee_creation: ""
-                },
-                message: "Votre requête a été envoyé avec success!"
+                }
+            });
+            this.setState({
+                message: "Votre requête a été envoyée avec success!"
             });
         }
        
     }
     render() {
-        // console.log("message", this.state.message)
         return (
             <div className="entrer-overlay">
                 <div className="EntrerEquipe">

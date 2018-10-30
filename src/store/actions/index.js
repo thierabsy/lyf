@@ -41,22 +41,23 @@ export const avoirEquipes = (route = "equipes", type = AVOIR_EQUIPE) => getDataA
 
 
 // action pour poster un formulaire avec la destitation et l'objet
-export const postAction = (route, values) => async  dispatch => {
+export const postAction = (route, values) => async  (dispatch, getState) => {
     
     // Combinaison entre l'url racine et la destination
     const url = rootPath + route;
 
     await axios.post( url, values)
+        .then(res => route === "connexion" && dispatch(avoirUser()))
         .catch(function (error) {
             console.log("post-err",error); 
     });
-
+    console.log("Get state", getState().user)
     dispatch({ type: POST_ACTION, payload: null })
 }
 
 
 // action pour mettre à jour un formulaire avec la destitation et l'objet
-export const updateAction = (route, id, values) => async  dispatch => {
+export const updateAction = (route, id, values) => async dispatch => {
     
     // Combinaison entre l'url racine et la destination
     const url = rootPath + route + "/" + id;

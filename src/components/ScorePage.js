@@ -15,7 +15,9 @@ class ScorePage extends Component {
     this.confirmDelete = this.confirmDelete.bind(this);
     this.deleteScore = this.deleteScore.bind(this);
   }
-
+  componentDidMount(){
+    document.title = "LYF | Score match"
+  }
   // Ouverture de la boite de confirmation de suppression
   confirmDelete(id){
     this.props.entrer("delete-score");
@@ -36,7 +38,6 @@ class ScorePage extends Component {
       ...score,
       date_match : moment(score && score.date_match).format("YYYY-MM-DD")
     }
-    console.log("id", this.state.id)
     return (
       <div className="TD ScorePage">
         {/* Visible uniquement si on a cliqué sur le button "Modifier" */}

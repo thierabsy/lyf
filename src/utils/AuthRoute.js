@@ -7,7 +7,6 @@ const AuthRoute = ({user, component: Component, ...rest}) => {
             <Component { ...props} />
         :
             <Redirect to="/" />
-        
     } />
 }
 

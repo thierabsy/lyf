@@ -77,6 +77,7 @@ export class EntrerScore extends Component {
         this.props.entrer("");
         // Met à jour le classement
         this.props.avoirClassement();
+        this.props.avoirScores();
     }
 
     fermeErrors(){
@@ -105,7 +106,7 @@ export class EntrerScore extends Component {
             let errors = [];
             fields.forEach(err => {
                 return errors.push(requiredFields[err])
-            });
+            }); 
             this.setState({ errors })
         } else {
 
@@ -113,11 +114,15 @@ export class EntrerScore extends Component {
             this.props.faire === "creer" && this.props.actionType("score", this.state.score);
 
             // On post le score avec l'action update pour mettre à jour un score
-            this.props.faire === "modifier" && this.props.actionType("update-score", this.state.score);
+            this.props.faire === "modifier" && this.props.actionType("update-score", this.props.id, this.state.score);
 
             // Vide l'object score du state
+            this.props.faire === "creer" &&
             this.setState({
                 score : {}
+            });
+            this.setState({
+                message: "Votre requête a été envoyée avec success!"
             });
 
         }
@@ -141,6 +146,7 @@ export class EntrerScore extends Component {
                         <EntrerScoreForm 
                             options = { this.state.options }
                             sc = { this.state.score }
+                            title = { this.props.title }
                             event = { this.inputChange }
                             // errorClass={this.state.score.equipe_1_id === this.state.score.equipe_2_id ? "memeEquipe" : ""}
                             annuler = { this.annuler }

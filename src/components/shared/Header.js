@@ -35,9 +35,7 @@ class Header extends Component {
                             </div>
                             <ul className={this.state.menuOuvert ? "menu-ouvert" : "menu-ferme"} >
                                 {/* L'onglet active aura la class "selected" */}
-                                <li>
-                                    <NavLink to="/" exact activeClassName="selected">Accueil</NavLink>
-                                </li>
+                                
                                 <li>
                                     <NavLink to="/classement" activeClassName="selected">Classement</NavLink>
                                 </li>
@@ -49,6 +47,9 @@ class Header extends Component {
                                 </li>
                                 <li>
                                     <NavLink to="/calendrier" activeClassName="selected">Calendrier</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/utilisateur" exact activeClassName="selected">Utilisateur</NavLink>
                                 </li>
                             </ul>
                         </div>

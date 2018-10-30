@@ -15,6 +15,9 @@ class EquipePage extends Component {
     this.confirmDelete = this.confirmDelete.bind(this);
     this.deleteEquipe = this.deleteEquipe.bind(this);
   }
+  componentDidMount(){
+    document.title = "LYF | Equipes"
+  }
 
   // Ouverture de la boite de confirmation de suppression
   confirmDelete(id){
@@ -37,7 +40,6 @@ class EquipePage extends Component {
       ...equipe,
       annee_creation : moment(equipe && equipe.annee_creation).format("YYYY-MM-DD")
     }
-    console.log("p",this.props)
     return (
       <div className="TD EquipePage">
         {/* Visible uniquement si on a cliqué sur le button "Modifier" */}

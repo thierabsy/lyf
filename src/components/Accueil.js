@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Authentification from './shared/Authentification';
+
+import { avoirUser } from '../store/actions';
+
 
 class Accueil extends Component {
   constructor(props){
@@ -8,11 +13,13 @@ class Accueil extends Component {
     this.state = {
       connect : false
     }
-
+  }
+  componentDidMount(){
+    this.props.avoirUser();
   }
 
   render() {
-    console.log("input", this.props)
+
     return (
       <div className="TD Accueil">
         <div className="wrapper">
@@ -20,11 +27,17 @@ class Accueil extends Component {
             <img src="img/fsf.jpg" alt="LYF" />
             <h5>Ligue Yux de Football</h5>
           </div>
-          <Authentification 
-            type="connexion" 
-            titre="Se Connecter"
-            history={this.props.history}
-          />
+          {
+            this.props.user && this.props.user.utilisateur ?
+              <Redirect to={{ pathname : "/classement"}} />
+            :
+              <Authentification 
+                type="connexion" 
+                titre="Se Connecter"
+                history={this.props.history}
+              />
+            
+          }
           <div className="intro sponsor">
             <h5>Sponsor Officiel</h5>
             <a href="http://yuxdakar.com" target="_blank">
@@ -37,4 +50,9 @@ class Accueil extends Component {
   }
 }
 
-export default Accueil;
+// On extrait le classement dans le store ===> maintenant accessible via props
+const mapStateToProps = ({ user }) => {
+  return { user }
+}
+
+export default connect(mapStateToProps, { avoirUser })(Accueil);

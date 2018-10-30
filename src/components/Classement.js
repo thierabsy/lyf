@@ -17,12 +17,12 @@ class Classement extends Component {
     this.refreshTable = this.refreshTable.bind(this);
   }
   componentDidMount(){
+    document.title = "LYF | Classement"
   }
   refreshTable(){
     this.props.avoirClassement("classement");
   }
   render() {
-    // console.log(this.props)
     return (
       <div className="TD Classement">
         {/* Visible uniquement si on a cliqué sur le button "Entrer Equipe" */}
@@ -41,6 +41,7 @@ class Classement extends Component {
           <EntrerScore 
             faire = "creer"
             actionType= { this.props.postAction }
+            title = "Entrer un nouveau score"
           />
         }
         <div className="refresher" onClick={() => this.refreshTable()}>

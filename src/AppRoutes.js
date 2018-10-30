@@ -28,7 +28,7 @@ class AppRoutes extends Component {
     }
     render() {
         // console.log("user", this.props.user)
-        let user = this.props.user || true;
+        let user = this.props.user || false;
         return (
             <>
                 <BrowserRouter>
@@ -37,9 +37,8 @@ class AppRoutes extends Component {
                         {
                             user && <Header />
                         }  
-                        {/* <Header /> */}
                         <Switch>
-                            <AuthRoute user={ user } path="/inscription" component={Inscription} />
+                            <AuthRoute user={ user } path="/utilisateur" component={Inscription} />
                             <AuthRoute user={ user } path="/classement" component={Classement} />
                             <AuthRoute user={ user } exact path="/scores" component={Scores} />
                             <AuthRoute user={ user } path="/scores/:score_id" component={ScorePage} />

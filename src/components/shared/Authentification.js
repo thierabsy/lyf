@@ -25,13 +25,10 @@ class Authentification extends Component {
         e.preventDefault();
         this.props.postAction(this.props.type, this.state.inputData);
         this.props.avoirUser();
-        setTimeout(() => {
-            this.props.type === "connexion" && this.props.history.push("/classement");
-            !this.props.user && alert("Crédentials incorrects!");
-        }, 1000)
+        this.props.type === "connexion" &&
+        this.props.history.push("/classement");
     }
     render(){
-        console.log("input", this.props)
         return(
             <div className="Authentification">
                 <form>

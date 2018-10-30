@@ -21,6 +21,7 @@ class Equipes extends Component {
   }
   componentDidMount(){
     this.props.avoirUser();
+    document.title = "LYF | Equipes"
   } 
   btnActionClick(id){
     let listeActions = document.getElementsByClassName("actions-list");

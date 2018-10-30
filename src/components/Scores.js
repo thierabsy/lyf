@@ -21,7 +21,7 @@ class Scores extends Component {
     this.deleteScore = this.deleteScore.bind(this);
   }
   componentDidMount(){
-
+    document.title = "LYF | Scores"
   } 
   btnActionClick(id){
     let listeActions = document.getElementsByClassName("actions-list");
