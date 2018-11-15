@@ -11,6 +11,40 @@
             border: 1px solid rgba(0, 0, 0, 0.1);
         }
     }
+    .filtre{
+        text-align: right;
+        margin-bottom: 10px;
+        .btn-filtre{
+            cursor: pointer;
+            background: gainsboro;
+        }
+        .btn{
+            &:focus{
+                outline: none !important;
+                box-shadow: none !important;
+            }
+        }
+        .filtre-active{
+            color: $color1;
+        }
+    }
+    .recherche {
+        float: left;
+        padding: 5px;
+        height: auto;
+        border-radius: 10px;
+        background: gainsboro;
+        max-width: 180px;
+        width: 100%;
+        transition: all 0.5s;        
+        &:focus{
+            outline: none;
+            box-shadow: none !important;
+            border: none;
+            max-width: 250px;
+            transition: all 0.5s;
+        }
+    }
     .journee{
         // margin-bottom: 10px;
         .journee-n {

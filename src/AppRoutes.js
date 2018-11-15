@@ -23,7 +23,7 @@ class AppRoutes extends Component {
     componentDidMount(){
         this.props.avoirUser();
         this.props.avoirClassement();
-        this.props.avoirScores();
+        this.props.avoirScores(); 
         this.props.avoirEquipes();
     }
     render() {

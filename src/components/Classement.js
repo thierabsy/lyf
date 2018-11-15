@@ -65,7 +65,7 @@ class Classement extends Component {
               </div>
                 <div className="col col-lg-6 col-md-12 col-sm-12 order-sm-2 order-md-2 order-lg-1">
                   <div className="tableau-wrapper">
-                    <div className="date"> Classement du championnat au { moment().format("L") } </div>
+                    <div className="date"> Classement du championnat au { moment().format("DD-MM-YYYY") } </div>
                     <Tableau classement= { this.props.classement } />
                   </div>
                 </div>

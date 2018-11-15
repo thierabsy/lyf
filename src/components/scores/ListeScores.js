@@ -12,15 +12,24 @@ const scoreType = (scoreEquipe, scoreAdverse) => {
     return score;
 }
 
-const ListeScores = ({ scores, supprimer, btnActionClick, getDataToUpdate }) => {
+const ListeScores = ({ scores, filtre, supprimer, btnActionClick, getDataToUpdate }) => {
+    
     if(scores){
+        const scoresParJournee = _.groupBy(scores, sc => sc.journee);
+        let scoresArray = [];
+        _.map(scoresParJournee, (score, idx) => {
+            scoresArray.push([Number(idx), score])
+        })
+
+        let filtrer = !filtre ? scoresArray : scoresArray.reverse();
         return(
             <div className="ListeScores">
                 {
-                    _.map(scores, (score, index) => {
-                        let scoreOrderDate = _.orderBy(score, ["date_match"]);
+                    filtrer.map((score, index) => {
+                        let scoreOrderDate = _.orderBy(score[1], ["date_match"]);
                         return <div key={ index } className="journee" >
-                            <div className="journee-n"> Journée { Number(index) } </div>
+                            <div className="journee-n"> Journée { score[0] } </div>
+                            {/* <div className="journee-n"> Journée { Number(index) } </div> */}
                             <div className="score">
                                 {
                                     scoreOrderDate.map((sc, i) => {

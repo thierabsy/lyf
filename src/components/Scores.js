@@ -12,17 +12,30 @@ class Scores extends Component {
     super(props);
     this.state = {
       scores:[],
+      filteredScore:[],
+      scoresParJournee:[],
       score:{},
-      id: ""
+      id: "",
+      keyword: "",
+      filtre: false
     }
     this.btnActionClick = this.btnActionClick.bind(this);
     this.getDataToUpdate = this.getDataToUpdate.bind(this);
+    this.filtrer = this.filtrer.bind(this);
+    this.chercher = this.chercher.bind(this);
     this.confirmDelete = this.confirmDelete.bind(this);
     this.deleteScore = this.deleteScore.bind(this);
   }
+
   componentDidMount(){
-    document.title = "LYF | Scores"
+    document.title = "LYF | Scores";
+    this.props.avoirScores()
+    this.setState({
+      scores: this.props.scores,
+      filteredScore: this.props.scores
+    })
   } 
+
   btnActionClick(id){
     let listeActions = document.getElementsByClassName("actions-list");
     let scoreSelect = document.getElementById(id);
@@ -35,6 +48,25 @@ class Scores extends Component {
       }
     }
   }
+
+  filtrer(){
+    this.setState({
+      filtre: !this.state.filtre
+    })
+  }
+
+  chercher(e){
+    let keyword = e.target.value;
+    let scores = this.props.scores.filter(sc => 
+                    sc.equipe_1_nom.toLowerCase().indexOf(keyword.toLowerCase()) > -1 ||
+                    sc.equipe_2_nom.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+                  )
+    this.setState({
+      filteredScore: scores,
+      keyword
+    })
+  }
+
   getDataToUpdate(id){
     let filterScore = this.props.scores.filter( sc => sc._id === id)[0];
 
@@ -67,6 +99,7 @@ class Scores extends Component {
     const selected = document.getElementById(id);
     selected.classList.remove("selected");
   }
+
   // Suppression de l'équipe ou annulation de suppression
   deleteScore(){
     this.props.deleteAction("delete-score", this.state.id);
@@ -75,7 +108,7 @@ class Scores extends Component {
   }
 
   render() {
-    const scoresParJournee = _.groupBy(this.props.scores, sc => sc.journee);
+    
     return (
       <div className="TD Scores">
         
@@ -115,11 +148,31 @@ class Scores extends Component {
         <div className="container">
             <div className="scores-intro">
               <h3> Scores des matchs au { moment().format("DD-MM-YYYY")} </h3>
-              <button className="btn" onClick={ () => this.props.entrer("score")}>Ajouter un score</button>
+              <button className="btn" onClick={ () => this.props.entrer("score")}>Ajouter un score</button> <br />
             </div>
             <hr />
+              <div className="filtre">
+                <input 
+                  type="text" 
+                  name="recherche" 
+                  className="form-control recherche" 
+                  placeholder="Recherche..." 
+                  onChange={(e)=> this.chercher(e)} 
+                />
+                <button className="btn btn-sm btn-filtre" onClick={ () => this.filtrer()}>
+                  Filtrer <i className={`fas fa-filter ${this.state.filtre ? "filtre-active" : ""}`} /> 
+                </button>
+              </div>
+              {
+                this.state.keyword !== "" &&
+                this.state.filteredScore.length === 0 &&
+                <div className="alert alert-danger">
+                  Score(s) introuvable(s) avec <strong>{ this.state.keyword.toUpperCase() }! </strong>  
+                </div>
+              }
             <ListeScores
-              scores={ scoresParJournee } 
+              scores={ this.state.filteredScore.length > 0 ? this.state.filteredScore : this.props.scores } 
+              filtre={ this.state.filtre } 
               supprimer={ this.confirmDelete } 
               btnActionClick={ this.btnActionClick } 
               getDataToUpdate={ this.getDataToUpdate } 

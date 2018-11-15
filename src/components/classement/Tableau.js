@@ -5,16 +5,17 @@ import _ from 'lodash';
 const renderTableau = (classement) => {
        return(
         //    La table devient responsive si la taille de l'ecran est < 572px en ajoutant la classe "table-responsive"
-        <table className={`table ${window.innerHeight < 572 ? "table-responsive" : ""} table-bordered`} > 
+        // <table className={`table ${window.innerHeight < 572 ? "table-responsive" : ""} table-bordered`} > 
+        <table className="table table-responsive " > 
             <thead>
                 <tr>
                     <th>#</th>
                     <th colSpan="2" >Equipe</th>
-                    <th>Points</th>
-                    <th>Matchs</th>
-                    <th>Victoire</th>
-                    <th>Nul</th>
-                    <th>Défaite</th>
+                    <th>P<span className="toHide">oints</span></th> 
+                    <th>M<span className="toHide">atchs</span></th>
+                    <th>V<span className="toHide">ictoire</span></th>
+                    <th>N<span className="toHide">ul</span></th>
+                    <th>D<span className="toHide">éfaite</span></th>
                 </tr>
             </thead>
             <tbody>

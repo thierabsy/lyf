@@ -1,3 +1,7 @@
+sup{
+    color: $color1;
+    font-weight: bold;
+}
 
 .Inscription,
 .Accueil{
@@ -39,10 +43,7 @@
     .default{
         font-size: 13px;
     }
-    sup{
-        color: $color1;
-        font-weight: bold;
-    }
+    
 }
 
 .Authentification {

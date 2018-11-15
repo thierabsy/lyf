@@ -7,7 +7,7 @@
     .refresher {
         position: absolute;
         top: 47%;
-        font-size: 40px;
+        font-size: 20px;
         padding: 10px;
         background: rgba(0,0,0,0.5);
         color: #e7e4e1;
@@ -61,6 +61,11 @@
         img{
             width: 80px;
             height: 58px;
+        }
+    }
+    .table{
+        th, td{
+            border: 1px solid #dee2e6 !important;
         }
     }
     

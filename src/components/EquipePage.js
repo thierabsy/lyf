@@ -3,7 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { avoirEquipes, entrer, updateAction, deleteAction } from '../store/actions';
+import { avoirEquipes, avoirClassement, entrer, updateAction, deleteAction } from '../store/actions';
 import EntrerEquipe  from './equipes/EntrerEquipe';
 import EquipePageDetails from './equipes/EquipePageDetails';
 
@@ -29,6 +29,7 @@ class EquipePage extends Component {
   deleteEquipe(){
     this.props.deleteAction("delete-equipe", this.props.match.params.equipe_id);
     this.props.avoirEquipes();
+    this.props.avoirClassement();
     this.props.entrer("");
     this.props.history.push("/equipes");
   }
@@ -85,4 +86,4 @@ const mapStateToProps = ({ equipes, entree }) => {
   return { equipes, entree }
 }
 
-export default connect(mapStateToProps, { avoirEquipes, entrer, updateAction, deleteAction })(EquipePage);
+export default connect(mapStateToProps, { avoirEquipes, avoirClassement, entrer, updateAction, deleteAction })(EquipePage);

@@ -11,3 +11,5 @@ const AuthRoute = ({user, component: Component, ...rest}) => {
 }
 
 export default AuthRoute;
+
+

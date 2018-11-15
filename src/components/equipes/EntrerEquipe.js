@@ -13,6 +13,7 @@ export class EntrerEquipe extends Component {
                 nom_equipe: "", 
                 annee_creation: ""
             },
+            equipes: [],
             message: "",
             errors : []
         }
@@ -20,8 +21,12 @@ export class EntrerEquipe extends Component {
         this.annuler = this.annuler.bind(this);
         this.fermeErrors = this.fermeErrors.bind(this);
         this.postEquipe = this.postEquipe.bind(this);
+        this.equipeExist = this.equipeExist.bind(this);
     }
     componentDidMount(){
+        this.setState({
+            equipes: this.props.equipes
+        });
         if(this.props.faire === "modifier"){
             this.props.updateData &&
             this.setState({
@@ -39,6 +44,7 @@ export class EntrerEquipe extends Component {
                 [e.target.name] : e.target.type === "number" ? Number(e.target.value) : e.target.value 
             }
         })
+        this.props.faire === "creer" && this.equipeExist();
     }
 
     annuler(){
@@ -61,6 +67,13 @@ export class EntrerEquipe extends Component {
             errors : [],
             message: ""
         })
+    }
+    equipeExist(){
+        const equipe = this.state.equipes.filter(eq => eq.nom_equipe === this.state.equipe.nom_equipe);
+        if(equipe.length > 0){
+            alert(`Le nom d'équipe doit être unique. Il existe déjà une équipe avec le nom ${this.state.equipe.nom_equipe}`)
+        }
+        return null;
     }
 
     postEquipe(e){
@@ -130,8 +143,8 @@ export class EntrerEquipe extends Component {
     }
 }
 
-const mapStateToProps = ({ entree }) => {
-  return { entree }
+const mapStateToProps = ({ entree, equipes }) => {
+  return { entree, equipes }
 } 
 
 export default connect(mapStateToProps , { entrer, postAction, avoirClassement, avoirEquipes })(EntrerEquipe)

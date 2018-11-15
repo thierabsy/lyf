@@ -20,12 +20,19 @@ export class EntrerScore extends Component {
                 journee: null,
             },
             options: [],
+            equipe1AvaitJoue: false,
+            nomEquipe1: "",
+            equipe2AvaitJoue: false,
+            matchDejaJouer: false,
+            nomEquipe2: "",
             message: ""
         }
         this.inputChange = this.inputChange.bind(this);
         this.annuler = this.annuler.bind(this);
         this.fermeErrors = this.fermeErrors.bind(this);
         this.postScore = this.postScore.bind(this);
+        this.aDejaJouer = this.aDejaJouer.bind(this);
+        this.matchDejaJouer = this.matchDejaJouer.bind(this);
         this.selectOptions = this.selectOptions.bind(this);
     }
 
@@ -46,6 +53,21 @@ export class EntrerScore extends Component {
                 ...this.state.score,
                 [e.target.name] : e.target.value,
             }},function() {
+                
+                let { equipe_1_id, equipe_2_id, journee } = this.state.score;
+
+                // On détermine si l'équipe 1 a déjà joué
+                let equipe1AvaitJoueArr = this.aDejaJouer(journee, equipe_1_id);
+                let nomEquipe1 = equipe1AvaitJoueArr && 
+                                 this.state.options.filter(eq => eq.equipe_id === equipe_1_id)[0] &&
+                                this.state.options.filter(eq => eq.equipe_id === equipe_1_id)[0].nom_equipe
+                // On détermine si l'équipe 2 a déjà joué
+                let equipe2AvaitJoueArr = this.aDejaJouer(journee, equipe_2_id)
+                let nomEquipe2 = equipe2AvaitJoueArr && 
+                                 this.state.options.filter(eq => eq.equipe_id === equipe_2_id)[0] &&
+                                this.state.options.filter(eq => eq.equipe_id === equipe_2_id)[0].nom_equipe
+                // On détermine si le match est déjà joué
+                let matchDejaJouer = this.matchDejaJouer(equipe_1_id, equipe_2_id).length > 0 ? true : false
                 // On determine le nombre de point en fonction du score
                 this.setState({
                     score : {
@@ -54,7 +76,12 @@ export class EntrerScore extends Component {
                                         parseInt(this.state.score.equipe_1_score) === parseInt(this.state.score.equipe_2_score)? 1 : 0,
                         equipe_2_point: parseInt(this.state.score.equipe_1_score) < parseInt(this.state.score.equipe_2_score)? 3 : 
                                         parseInt(this.state.score.equipe_1_score) === parseInt(this.state.score.equipe_2_score)? 1 : 0,
-                    }
+                    },
+                    equipe1AvaitJoue: equipe1AvaitJoueArr.length > 0 ? true : false,
+                    equipe2AvaitJoue: equipe2AvaitJoueArr.length > 0 ? true : false,
+                    nomEquipe1,
+                    nomEquipe2,
+                    matchDejaJouer
                 });
                 // Change option disabled to true 
                 this.selectOptions();
@@ -81,16 +108,34 @@ export class EntrerScore extends Component {
     }
 
     fermeErrors(){
-        // Vide l'object equipe du state
+        // Vide l'object score du state 
         this.setState({
-            errors : [],
-            message: ""
+            message: "",
+            equipe1AvaitJoue: false,
+            equipe2AvaitJoue: false,
+            errors : []
         })
+    }
+    aDejaJouer(journee, equipe){
+        let dejaJouer = this.props.scores.filter(sc => sc.journee === Number(journee) &&
+            (
+                sc.equipe_1_id === equipe ||
+                sc.equipe_2_id === equipe
+            ) 
+        )
+        return dejaJouer
+    }
+
+    matchDejaJouer(equipe1, equipe2){
+        let dejaJouer = this.props.scores.filter(sc => sc.equipe_1_id === equipe1 && sc.equipe_2_id === equipe2) 
+        return dejaJouer
     }
 
     postScore(e){
         e.preventDefault();
 
+        let errors = [];
+        
         let requiredFields =  {
             journee: "La journée est obligatoire.", 
             date_match: "La date du match est obligatoire.",
@@ -100,13 +145,26 @@ export class EntrerScore extends Component {
             equipe_2_score: "Le Score de l'Equipe 2 est obligatoire.",
         };
         let fields = Object.keys(requiredFields)
-                            .filter(eq => this.state.score[eq] === "" || this.state.score[eq] === null)
+                            .filter(eq => 
+                                this.state.score[eq] === "" || 
+                                this.state.score[eq] === null
+                            )
 
         if(fields.length > 0){
-            let errors = [];
             fields.forEach(err => {
                 return errors.push(requiredFields[err])
             }); 
+            this.setState({ errors })
+        } else if( this.state.equipe1AvaitJoue || this.state.equipe2AvaitJoue){
+            this.state.equipe1AvaitJoue && 
+            errors.push(`${this.state.nomEquipe1} a déjà joué lors de la ${this.state.score.journee} ${Number(this.state.score.journee) === 1 ? "ère" : "ème"} journée.`);
+            this.state.equipe2AvaitJoue && 
+            errors.push(`${this.state.nomEquipe2} a déjà joué lors de la ${this.state.score.journee} ${Number(this.state.score.journee) === 1 ? "ère" : "ème"} journée.`);
+            
+            this.setState({ errors })
+        } else if(this.state.matchDejaJouer) {
+            errors.push(`Le match entre ${this.state.nomEquipe1} et ${this.state.nomEquipe2} est déjà enregistré lors d'une autre journée de championnat.`)
+           
             this.setState({ errors })
         } else {
 
@@ -124,9 +182,7 @@ export class EntrerScore extends Component {
             this.setState({
                 message: "Votre requête a été envoyée avec success!"
             });
-
         }
-
     }
 
     render() {
@@ -159,8 +215,8 @@ export class EntrerScore extends Component {
     }
 }
 
-const mapStateToProps = ({ classement }) => {
-  return { classement }
+const mapStateToProps = ({ classement, scores }) => {
+  return { classement, scores }
 } 
 
 export default connect(mapStateToProps, { entrer, postAction, avoirScores, avoirClassement })(EntrerScore)
