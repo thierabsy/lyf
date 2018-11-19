@@ -36,7 +36,7 @@ const ListeScores = ({ scores, filtre, supprimer, btnActionClick, getDataToUpdat
                                         return(
                                             <div key={i} className="score-wrapper">
                                                 <div className="score-items">
-                                                    <div className="date"> { moment(sc.date_match).format("DD-MM-YYYY") } </div>
+                                                    <div className="date"> { moment(sc.date_match).format(window.innerWidth < 578 ? "DD-MM-YY" : "DD-MM-YYYY") } </div>
                                                     <div className="score-item">
                                                         <div className={`score-item-wrapper equipe1 ${scoreType(sc.equipe_1_score, sc.equipe_2_score) }`}>
                                                             <span className="nom"> { sc.equipe_1_nom } </span>

@@ -47,6 +47,20 @@
     }
     .journee{
         // margin-bottom: 10px;
+        @include mediaQuery(478px){
+            .journee-n{
+                padding-left: 65px !important;
+            }
+            .date{
+                width: 68px !important;
+            }
+            .score-item{
+                width: calc(100% - 73px) !important;
+            }
+            .score-actions{
+                width: 5px !important;
+            }
+        }
         .journee-n {
             text-align: center;
             background: black;
@@ -60,7 +74,7 @@
         }
         .score-actions{
             // text-align: right;
-            width: 90px;
+            width: 82px;
             position: relative;
             .BtnAction{
                 text-align: right;
@@ -76,11 +90,12 @@
             &:nth-of-type(2n){
                 background: lightblue;
             }
+            
             .date{
-                width: 90px;
+                width: 82px;
             }
             .score-item{
-                width: calc(100% - 90px * 2);
+                width: calc(100% - 82px * 2);
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -106,7 +121,7 @@
                 }
                 .score-n{
                     background: lightgrey;
-                    padding: 5px 10px;
+                    padding: 5px;
                     margin: 3px;
                 }
             }

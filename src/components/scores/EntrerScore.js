@@ -67,7 +67,7 @@ export class EntrerScore extends Component {
                                  this.state.options.filter(eq => eq.equipe_id === equipe_2_id)[0] &&
                                 this.state.options.filter(eq => eq.equipe_id === equipe_2_id)[0].nom_equipe
                 // On détermine si le match est déjà joué
-                let matchDejaJouer = this.matchDejaJouer(equipe_1_id, equipe_2_id).length > 0 ? true : false
+                let matchDejaJouer = this.props.faire === "creer" && this.matchDejaJouer(equipe_1_id, equipe_2_id).length > 0 ? true : false
                 // On determine le nombre de point en fonction du score
                 this.setState({
                     score : {
@@ -117,7 +117,7 @@ export class EntrerScore extends Component {
         })
     }
     aDejaJouer(journee, equipe){
-        let dejaJouer = this.props.scores.filter(sc => sc.journee === Number(journee) &&
+        let dejaJouer = this.props.scores.filter(sc => sc._id !== this.props.id && sc.journee === Number(journee) &&
             (
                 sc.equipe_1_id === equipe ||
                 sc.equipe_2_id === equipe
@@ -186,7 +186,6 @@ export class EntrerScore extends Component {
     }
 
     render() {
-
         return (
             <div className="entrer-overlay">
                 <div className="EntrerScore">

@@ -105,6 +105,7 @@ class Scores extends Component {
     this.props.deleteAction("delete-score", this.state.id);
     this.props.avoirScores();
     this.props.entrer("");
+    this.props.history.push("/scores");
   }
 
   render() {
